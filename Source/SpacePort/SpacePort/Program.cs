@@ -15,13 +15,24 @@ namespace SpacePort
 
 
 
-            var client = new RestClient("https://swapi.co/api/");
+            var path = new RestClient("https://swapi.co/api/");
+            var request = new RestRequest("people/", Method.GET, DataFormat.Json);
+            var response = path.Execute(request);
+            var result = response.Content.ToString();
+
+            Console.WriteLine(result);
+
+            
+
+           
+
             //client.Authenticator = new HttpBasicAuthenticator("username", "password");
 
-            var request = new RestRequest("people", DataFormat.Json);
+            //var request = new RestRequest("people.json", DataFormat.Json);
 
-            var response = client.Get(request);
+            //var response = client.Get(request);
 
+            //client.Execute(response);
             //var name = response.Content.Where(x => x.namee == "Luke Skywalker" );
             //Testing
             //string[] arr = { "Large", "Medium", "Small", "Small" };
