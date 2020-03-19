@@ -15,18 +15,35 @@ namespace SpacePort
 
 
 
+            var client = new RestClient("https://swapi.co/api/");
+            var request = new RestRequest("people/", DataFormat.Json);
+            var peopleResponse = client.Get<People>(request);
 
-            var path = new RestClient("https://swapi.co/api/");
-            var request = new RestRequest("people/", Method.GET);
-            var response = path.Execute(request);
-            var result = response.Content.ToString();
+            //Console.WriteLine(peopleResponse.Data.Count);
+            foreach (var p in peopleResponse.Data.Name)
+            {
+                Console.WriteLine(p);
+            }
+
+            //var path = new RestClient("https://swapi.co/api/");
+            //var request = new RestRequest("people/", Method.GET);
+            //var response = path.Execute(request);
+            //var result = response.Content.ToString();
             //var data = JsonConvert.SerializeObject(result);
-            foreach(var res in result)
-            Console.WriteLine(res);
+            //foreach(var res in result)
+            //Console.WriteLine(res);
 
-            
+            /*var client = new RestClient("https://swapi.co/api/");
+            var request = new RestRequest("people/", DataFormat.Json);
+            var peopleResponse = client.Get<Swreponse>(request);
 
-           //jsonc
+            Console.WriteLine(peopleResponse.Data.Count);
+            foreach (var p in peopleResponse.Data.Results)
+            {
+                Console.WriteLine(p.Name);
+            }*/
+
+            //jsonc
 
             //client.Authenticator = new HttpBasicAuthenticator("username", "password");
 
