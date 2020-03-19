@@ -29,5 +29,18 @@ namespace xUnitSpacePort.Tests
             //Assert
             Assert.NotNull(port);
         }
+
+        [Fact]
+        public void CreatMenuClass()
+        {
+            //Arrange
+            Menu menu = new Menu();
+            //Act
+
+            //Assert
+            Assert.NotNull(menu);
+        }
+
+
     }
 }
