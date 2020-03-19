@@ -35,5 +35,18 @@ namespace XUnitTest.Test
             //Assert
             Assert.NotNull(menu);
         }
+
+        [Fact]
+        public void CreateValidate()
+        {
+            //Arrage
+            ValidateCustomer v = new ValidateCustomer();
+            string name = v.Name;
+            //Act
+            //Assert
+            Assert.NotNull(v);
+        }
+
+
     }
 }
