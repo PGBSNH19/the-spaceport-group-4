@@ -11,16 +11,14 @@ namespace SpacePort
         {
             const string path = "https://swapi.co/api/";
             var client = new RestClient(path);
-            var requestClient = new RestRequest("people/", Method.GET);
+            var requestClient = new RestRequest("people",Method.GET);
             var jsonResponse = client.Execute(requestClient);
-
             var obj = JsonConvert.DeserializeObject<dynamic>(jsonResponse.Content);
-            //Console.WriteLine(obj.results[0].name);
+            //Console.WriteLine(obj);
 
-            foreach (var item in obj)
+            foreach (var item in obj.results)
             {
-                Console.WriteLine(item.results[0]);
-                //Console.WriteLine("Name: {0} \n Gender: {1} " item.name, item.gender);
+                Console.WriteLine("Name: {0} \n Gender: {1} ", item.name, item.gender);
             }
         }
     }

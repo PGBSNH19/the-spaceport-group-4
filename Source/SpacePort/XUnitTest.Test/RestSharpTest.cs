@@ -19,7 +19,6 @@ namespace XUnitTest.Test
             
         }
 
-
         [Fact]
         public void createApiClass()
         {
