@@ -20,10 +20,10 @@ namespace SpacePort
             var peopleResponse = client.Get<People>(request);
 
             //Console.WriteLine(peopleResponse.Data.Count);
-            foreach (var p in peopleResponse.Data.Name)
-            {
-                Console.WriteLine(p);
-            }
+            //foreach (var p in peopleResponse.Data.Name)
+            //{
+            //    Console.WriteLine(p);
+            //}
 
             //var path = new RestClient("https://swapi.co/api/");
             //var request = new RestRequest("people/", Method.GET);
