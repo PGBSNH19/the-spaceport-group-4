@@ -11,13 +11,13 @@ namespace SpacePort
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
 
+            StarWarsApi s = new StarWarsApi();
+            s.ShowData();
 
-
-            var client = new RestClient("https://swapi.co/api/");
-            var request = new RestRequest("people/", DataFormat.Json);
-            var peopleResponse = client.Get<People>(request);
+            //var client = new RestClient("https://swapi.co/api/");
+            //var request = new RestRequest("people/", DataFormat.Json);
+            //var peopleResponse = client.Get<People>(request);
 
             //Console.WriteLine(peopleResponse.Data.Count);
             //foreach (var p in peopleResponse.Data.Name)

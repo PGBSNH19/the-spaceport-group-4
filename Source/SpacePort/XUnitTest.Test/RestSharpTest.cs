@@ -18,5 +18,16 @@ namespace XUnitTest.Test
             var content = client.Execute(request).Content;
             
         }
+
+
+        [Fact]
+        public void createApiClass()
+        {
+
+            StarWarsApi api = new StarWarsApi();
+            api.ShowData();
+
+            Assert.NotNull(api);
+        }
     }
 }
