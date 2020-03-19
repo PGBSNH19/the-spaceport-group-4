@@ -16,9 +16,9 @@ namespace SpacePort
             var obj = s.ShowData("people");
 
             //var name = 
-            foreach(var v in obj.results)
+            foreach (var v in obj.results)
             {
-                Console.WriteLine(v.name) ;
+                Console.WriteLine(v.name);
             }
             //var client = new RestClient("https://swapi.co/api/");
             //var request = new RestRequest("people/", DataFormat.Json);
