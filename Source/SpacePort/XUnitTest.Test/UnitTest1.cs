@@ -62,5 +62,20 @@ namespace XUnitTest.Test
             //Assert
             Assert.NotNull(ticket);
         }
+
+        [Fact]
+        public void CreateReceipt()
+        {
+            //Arrange
+            Receipt receipt = new Receipt();
+
+            //Act
+            int receiptID = receipt.ReceiptID;
+            int ticketID = receipt.TicketID;
+            int totalPrice = receipt.TotalPrice;
+
+            //Assert
+            Assert.NotNull(receipt);
+        }
     }
 }
