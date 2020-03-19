@@ -14,14 +14,14 @@ namespace XUnitTest.Test
             Spaceport spaceport = new Spaceport();
 
             //Act
-            Dictionary<string, int> ShipTypes = spaceport.ShipTypes;
+            Dictionary<string, int> shipTypes = spaceport.ShipTypes;
             
             //Assert
             Assert.NotNull(spaceport);
         }
 
         [Fact]
-        public void CreatMenu()
+        public void CreateMenu()
         {
             //Arrange
             Menu menu = new Menu();
@@ -47,6 +47,20 @@ namespace XUnitTest.Test
             Assert.NotNull(v);
         }
 
+        [Fact]
+        public void CreateTicket()
+        {
+            //Arrange
+            Ticket ticket = new Ticket();
 
+            //Act
+            int ticketID = ticket.TicketID;
+            string shipSize = ticket.ShipSize;
+            DateTime timeOfArrival = ticket.TimeOfArrival;
+            DateTime timeOfDepature = ticket.TimeOfDepature;
+
+            //Assert
+            Assert.NotNull(ticket);
+        }
     }
 }
