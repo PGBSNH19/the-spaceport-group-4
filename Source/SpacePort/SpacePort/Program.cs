@@ -15,6 +15,7 @@ namespace SpacePort
             StarWarsApi s = new StarWarsApi();
             var obj = s.ShowData("people");
 
+            //var name = 
             foreach(var v in obj.results)
             {
                 Console.WriteLine(v.name) ;

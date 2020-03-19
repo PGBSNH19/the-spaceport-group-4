@@ -22,7 +22,6 @@ namespace SpacePort
             //{
             //    Console.WriteLine("Name: {0} \n Gender: {1} ", item.name, item.gender);
             //}
-
             return obj;
             
         }

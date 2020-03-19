@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace XUnitTest.Test
 {
@@ -51,7 +52,7 @@ namespace XUnitTest.Test
 
             var data = api.ShowData("people");
 
-            Assert.Equal("Luke Skywalker", data[3].First.name);
+            Assert.IsType<Newtonsoft.Json.Linq.JObject>(data);
         }
     }
 }
