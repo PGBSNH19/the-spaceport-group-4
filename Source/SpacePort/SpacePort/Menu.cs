@@ -1,6 +1,6 @@
 ﻿namespace SpacePort
 {
-    public class Port
+    public class Menu
     {
     }
 }
