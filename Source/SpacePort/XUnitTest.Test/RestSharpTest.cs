@@ -48,7 +48,10 @@ namespace XUnitTest.Test
         public void TestShowData()
         {
             StarWarsApi api = new StarWarsApi();
-            
+
+            var data = api.ShowData("people");
+
+            Assert.Equal("Luke Skywalker", data[3].First.name);
         }
     }
 }
