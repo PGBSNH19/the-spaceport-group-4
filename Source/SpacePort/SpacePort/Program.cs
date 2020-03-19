@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SpacePort
 {
@@ -16,15 +17,16 @@ namespace SpacePort
 
 
             var path = new RestClient("https://swapi.co/api/");
-            var request = new RestRequest("people/", Method.GET, DataFormat.Json);
+            var request = new RestRequest("people/", Method.GET);
             var response = path.Execute(request);
             var result = response.Content.ToString();
-
-            Console.WriteLine(result);
+            //var data = JsonConvert.SerializeObject(result);
+            foreach(var res in result)
+            Console.WriteLine(res);
 
             
 
-           
+           //jsonc
 
             //client.Authenticator = new HttpBasicAuthenticator("username", "password");
 
