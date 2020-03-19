@@ -10,8 +10,13 @@ namespace XUnitTest.Test
         [Fact]
         public void CreateSpacePort()
         {
+            //Arrange
             Spaceport spaceport = new Spaceport();
+
+            //Act
             Dictionary<string, int> ShipTypes = spaceport.ShipTypes;
+            
+            //Assert
             Assert.NotNull(spaceport);
         }
 
@@ -30,6 +35,5 @@ namespace XUnitTest.Test
             //Assert
             Assert.NotNull(menu);
         }
-
     }
 }
