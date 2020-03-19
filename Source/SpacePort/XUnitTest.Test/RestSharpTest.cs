@@ -16,7 +16,7 @@ namespace XUnitTest.Test
             var request = new RestRequest("people/", Method.GET);
 
             var content = client.Execute(request).Content;
-            va
+            
         }
     }
 }
