@@ -1,5 +1,7 @@
 using System;
 using Xunit;
+using SpacePort;
+using System.Collections.Generic;
 
 namespace xUnitSpacePort.Tests
 {
@@ -8,7 +10,14 @@ namespace xUnitSpacePort.Tests
         [Fact]
         public void Test1()
         {
+            //Arrange
+            Spaceport spaceport = new Spaceport();
 
+            //Act
+
+
+            //Assert
+            Assert.NotNull(spaceport);
         }
     }
 }

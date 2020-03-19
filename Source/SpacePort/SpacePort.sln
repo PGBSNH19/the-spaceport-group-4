@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpacePort", "SpacePort\SpacePort.csproj", "{02C751E0-D5AE-4DCB-B658-D4CFEDEEFAE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitSpacePort.Tests", "xUnitSpacePort.Tests\xUnitSpacePort.Tests.csproj", "{A8107B38-A042-45C1-9E66-7EC2102753B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitSpacePort.Tests", "xUnitSpacePort.Tests\xUnitSpacePort.Tests.csproj", "{255A2C7F-2E76-4BBD-A646-2803CF0F3A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{02C751E0-D5AE-4DCB-B658-D4CFEDEEFAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02C751E0-D5AE-4DCB-B658-D4CFEDEEFAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02C751E0-D5AE-4DCB-B658-D4CFEDEEFAE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8107B38-A042-45C1-9E66-7EC2102753B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8107B38-A042-45C1-9E66-7EC2102753B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8107B38-A042-45C1-9E66-7EC2102753B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8107B38-A042-45C1-9E66-7EC2102753B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255A2C7F-2E76-4BBD-A646-2803CF0F3A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255A2C7F-2E76-4BBD-A646-2803CF0F3A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255A2C7F-2E76-4BBD-A646-2803CF0F3A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255A2C7F-2E76-4BBD-A646-2803CF0F3A83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

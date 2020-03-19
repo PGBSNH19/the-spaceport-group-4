@@ -8,48 +8,48 @@ namespace SpacePort
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
+           
             //Testing
-            string[] arr = { "Large", "Medium", "Small", "Small" };
+            //string[] arr = { "Large", "Medium", "Small", "Small" };
 
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            //Dictionary<string, int> dict = new Dictionary<string, int>();
 
-            foreach (string s in arr)
-            {
-                if (!dict.ContainsKey(s))
-                    dict.Add(s, 10);                
-            }
+            //foreach (string s in arr)
+            //{
+            //    if (!dict.ContainsKey(s))
+            //        dict.Add(s, 10);                
+            //}
 
-            foreach(KeyValuePair<string,int> k in dict)
-                Console.WriteLine(k);
+            //foreach(KeyValuePair<string,int> k in dict)
+            //    Console.WriteLine(k);
 
-            Console.WriteLine("BUY");
-            Buy("Large", dict);
-            Buy("Large", dict);
-            Buy("Medium", dict);
-            Buy("Medium", dict);
-            Buy("Medium", dict);
-            Buy("Medium", dict);
+            //Console.WriteLine("BUY");
+            //CheckInParking("Large", dict);
+            //CheckInParking("Large", dict);
+            //CheckInParking("Medium", dict);
+            //CheckInParking("Medium", dict);
+            //CheckInParking("Medium", dict);
+            //CheckInParking("Medium", dict);
 
-            foreach (KeyValuePair<string, int> k in dict)
-                Console.WriteLine(k);
+            //foreach (KeyValuePair<string, int> k in dict)
+            //    Console.WriteLine(k);
 
-            Console.WriteLine("SELL");
-            Sell("Medium", dict);
-            Sell("Medium", dict);
+            //Console.WriteLine("SELL");
+            //CheckOutParking("Medium", dict);
+            //CheckOutParking("Medium", dict);
 
-            foreach (KeyValuePair<string, int> k in dict)
-                Console.WriteLine(k);
+            //foreach (KeyValuePair<string, int> k in dict)
+            //    Console.WriteLine(k);
         }
 
-        static void Buy(string type, Dictionary<string, int> dict)
-        {
-            dict[type] -=1;
-        }
+        //static void CheckInParking(string type, Dictionary<string, int> dict)
+        //{
+        //    dict[type] -=1;
+        //}
 
-        static void Sell(string type, Dictionary<string, int> dict)
-        {
-            dict[type] +=1;
-        }
+        //static void CheckOutParking(string type, Dictionary<string, int> dict)
+        //{
+        //    dict[type] +=1;
+        //}
     }
 }
