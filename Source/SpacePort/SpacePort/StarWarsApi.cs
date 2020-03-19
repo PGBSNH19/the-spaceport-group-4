@@ -7,21 +7,23 @@ namespace SpacePort
     public class StarWarsApi
     {
         public string Path { get; } = "https://swapi.co/api/";
-        public RestClient Client { get; set; }
+        public RestClient Client;
 
-        public void ShowData()
+        public object ShowData(string category)
         {
-            //const string path = "https://swapi.co/api/";
             Client = new RestClient(Path);
-            var request = new RestRequest("people",Method.GET);
-            var jsonResponse = client.Execute(request);
-            var obj = JsonConvert.DeserializeObject<dynamic>(jsonResponse.Content);
+            var request = new RestRequest(category, Method.GET);
+            //request.AddUrlSegment("ID", 1);
+            var jsonResponse = Client.Execute(request);
+            var obj = JsonConvert.DeserializeObject(jsonResponse.Content);
             //Console.WriteLine(obj);
 
-            foreach (var item in obj.results)
-            {
-                Console.WriteLine("Name: {0} \n Gender: {1} ", item.name, item.gender);
-            }
+
+            return obj;
+            //foreach (var item in obj.results)
+            //{
+            //    Console.WriteLine("Name: {0} \n Gender: {1} ", item.name, item.gender);
+            //}
         }
     }
 }

@@ -13,7 +13,7 @@ namespace SpacePort
         {
 
             StarWarsApi s = new StarWarsApi();
-            s.ShowData();
+            var obj = s.ShowData("people");
 
             //var client = new RestClient("https://swapi.co/api/");
             //var request = new RestRequest("people/", DataFormat.Json);
