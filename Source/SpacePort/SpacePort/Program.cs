@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using RestSharp;
+using RestSharp.Authenticators;
+using System.Linq;
 
 namespace SpacePort
 {
@@ -9,6 +12,17 @@ namespace SpacePort
         {
             Console.WriteLine("Hello World!");
 
+
+
+
+            var client = new RestClient("https://swapi.co/api/");
+            //client.Authenticator = new HttpBasicAuthenticator("username", "password");
+
+            var request = new RestRequest("people", DataFormat.Json);
+
+            var response = client.Get(request);
+
+            //var name = response.Content.Where(x => x.namee == "Luke Skywalker" );
             //Testing
             //string[] arr = { "Large", "Medium", "Small", "Small" };
 
