@@ -54,5 +54,14 @@ namespace XUnitTest.Test
 
             Assert.IsType<Newtonsoft.Json.Linq.JObject>(data);
         }
+
+        [Fact]
+        public void AddShowShipMethod()
+        {
+            StarWarsApi api = new StarWarsApi();
+            int startIndex = api.StartIndex;
+            int endIndex = api.EndIndex;
+            api.ShipData();
+        }
     }
 }

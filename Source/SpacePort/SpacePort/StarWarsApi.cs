@@ -8,13 +8,15 @@ namespace SpacePort
     public class StarWarsApi
     {
         public string Path { get; } = "https://swapi.co/api/";
+        public int StartIndex { get; set; }
+        public int EndIndex { get; set; }
+
         public RestClient Client;
         private int index = 0;
 
         public dynamic ShowData(string category)
         {
             category.ToLower();
-
             
             if (category == "people")
                 index = 87;
@@ -23,7 +25,7 @@ namespace SpacePort
 
             List<object> objList = new List<object>();
             Client = new RestClient(Path);
-            for(int i = 1; i < index; i++)
+            for(int i = 1; i <= index; i++)
             {
                 var request = new RestRequest(category + "/" + i, Method.GET);
                 //request.AddUrlSegment("ID", 37);
@@ -43,6 +45,11 @@ namespace SpacePort
             //}
 
 
+        }
+
+        public void ShipData()
+        {
+            //throw new NotImplementedException();
         }
     }
 }
