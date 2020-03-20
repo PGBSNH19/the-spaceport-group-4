@@ -2,6 +2,7 @@
 using RestSharp;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace SpacePort
 {
@@ -47,14 +48,50 @@ namespace SpacePort
 
         }
 
-        public void ShipData()
+        public List<string> ShipData()
         {
-            //throw new NotImplementedException();
+            List<string> ships = new List<string>();
+            StartIndex = 1;
+            EndIndex = 37;
+
+            for(int i = StartIndex; i <= EndIndex; i++) 
+            {
+                var request = new RestRequest("starships/" + i, Method.GET);
+                var response = Client.Execute(request);
+                try 
+                {
+                    JObject obj = JObject.Parse(response.Content);
+                    ships.Add(obj["starship_class"].ToString());
+                }
+                catch (NullReferenceException n)
+                {
+                    Console.WriteLine("Page " + i + " was null");
+                }
+            }
+            return ships;
         }
 
-        public void TravelerData()
+        public List<string> TravelerData()
         {
-            //throw new NotImplementedException();
+            List<string> travelers = new List<string>();
+            StartIndex = 1;
+            EndIndex = 87;
+
+            for (int i = StartIndex; i <= EndIndex; i++)
+            {
+                var request = new RestRequest("people/" + i, Method.GET);
+                var response = Client.Execute(request);
+                try
+                {
+                    JObject obj = JObject.Parse(response.Content);
+                    travelers.Add(obj["name"].ToString());
+                }
+                catch (NullReferenceException n)
+                {
+                    Console.WriteLine("Page " + i + " was null");
+                }
+            }
+            return travelers;
         }
     }
 }
