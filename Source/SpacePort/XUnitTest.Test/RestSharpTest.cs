@@ -63,5 +63,12 @@ namespace XUnitTest.Test
             int endIndex = api.EndIndex;
             api.ShipData();
         }
+
+        [Fact]
+        public void AddShowTravelerMethod()
+        {
+            StarWarsApi api = new StarWarsApi();
+            api.TravelerData();
+        }
     }
 }

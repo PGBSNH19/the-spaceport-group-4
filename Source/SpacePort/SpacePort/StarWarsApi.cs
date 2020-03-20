@@ -51,5 +51,10 @@ namespace SpacePort
         {
             //throw new NotImplementedException();
         }
+
+        public void TravelerData()
+        {
+            //throw new NotImplementedException();
+        }
     }
 }
