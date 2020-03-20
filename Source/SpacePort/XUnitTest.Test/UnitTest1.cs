@@ -26,15 +26,13 @@ namespace XUnitTest.Test
         public void CreateMenu()
         {
             //Arrange
-            Menu menu = new Menu();
+            Menu m;
 
-            string SignIn = menu.SignIn;
-            menu.DisplayMenu();
-            menu.DisplayShipTypes();
-            menu.CustomerSignIn();
-            //Act
-            //Assert
-            Assert.NotNull(menu);
+            string SignIn = Menu.SignIn;
+            Menu.DisplayMenu();
+            Menu.DisplayShipTypes();
+            Menu.CustomerSignIn();
+
         }
 
         [Fact]
