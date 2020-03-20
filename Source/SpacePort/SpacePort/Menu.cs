@@ -26,7 +26,7 @@ namespace SpacePort
             }
         }
 
-        public void CustomerSignIn()
+        public static void CustomerSignIn()
         {
             List<string> traveler = api.TravelerData();
 
