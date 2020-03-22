@@ -1,6 +1,6 @@
 ﻿namespace SpacePort
 {
-    public class People
+    public class Traveler
     {
         public string Name { get; set; }
     }

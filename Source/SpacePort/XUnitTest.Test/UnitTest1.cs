@@ -80,7 +80,7 @@ namespace XUnitTest.Test
         public void CreatePeopleAPIResponse()
         {
             //Arrange
-            People people = new People();
+            Traveler people = new Traveler();
 
             string name = people.Name;
 

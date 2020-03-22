@@ -17,7 +17,8 @@ namespace SpacePort
 
             StarWarsApi api = new StarWarsApi();
             //Task<List<string>> l = api.StarShipData();
-            api.StarShipData();
+            api.GetAsyncShipData();
+            api.GetAsyncTravelerData();
 
             Console.ReadKey();
             //Dictionary<string, int> dict = new Dictionary<string, int>();
