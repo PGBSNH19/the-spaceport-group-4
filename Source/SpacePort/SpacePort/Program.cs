@@ -19,7 +19,7 @@ namespace SpacePort
             //Task<List<string>> l = api.StarShipData();
             api.StarShipData();
 
-            
+            Console.ReadKey();
             //Dictionary<string, int> dict = new Dictionary<string, int>();
 
             //foreach (string s in arr)

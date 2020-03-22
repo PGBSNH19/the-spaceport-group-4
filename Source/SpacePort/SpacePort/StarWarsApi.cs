@@ -95,26 +95,51 @@ namespace SpacePort
 
         public async void StarShipData()
         {
-            var client = new RestClient("https://swapi.co/api/");
+            /* var client = new RestClient("https://swapi.co/api/");
 
-            StartIndex = 1;
-            EndIndex = 37;
+             StartIndex = 1;
+             EndIndex = 37;
+             List<string> tmpList = new List<string>();
+
+             for (int i = StartIndex; i <= EndIndex; i++)
+             {
+
+                 var request = new RestRequest("starships/{index}", DataFormat.Json);
+                 request.AddParameter("index", i, ParameterType.UrlSegment);
+                 var timeline = await client.GetAsync<StarShip>(request);
+
+                 if (request != null)
+                 {
+                     tmpList.Add(timeline.StarShipClass);
+                 }
+                 Console.WriteLine(timeline.StarShipClass);               
+             }*/
+
+            //var client = new RestClient("https://swapi.co/api/");
+            int index = 37;
+            int startIndex = 1;
             List<string> tmpList = new List<string>();
 
-            for (int i = StartIndex; i <= EndIndex; i++)
+            for (int i = startIndex; i <= index; i++)
             {
-                
                 var request = new RestRequest("starships/{index}", DataFormat.Json);
                 request.AddParameter("index", i, ParameterType.UrlSegment);
-                var timeline = await client.GetAsync<StarShip>(request);
-                
-                if (request != null)
+                //var request = new RestRequest("starships/" + i, DataFormat.Json);
+                var timeline = await Client.GetAsync<StarShip>(request);
+                if(timeline.StarshipClass != null)
                 {
-                    tmpList.Add(timeline.StarShipClass);
+                    tmpList.Add(timeline.StarshipClass);
                 }
-                Console.WriteLine(timeline.StarShipClass);               
-            }
+                Console.WriteLine(timeline.StarshipClass);
 
+                
+            }
+            Console.WriteLine("LIST");
+            foreach (string s in tmpList)
+            {
+                
+                Console.WriteLine(s);
+            }
             //return tmpList;
 
         }
