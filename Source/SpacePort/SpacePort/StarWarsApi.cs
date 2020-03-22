@@ -13,7 +13,7 @@ namespace SpacePort
         public int StartIndex { get; set; }
         public int EndIndex { get; set; }
 
-        public RestClient Client;
+        public RestClient Client = new RestClient("https://swapi.co/api/");
         private int index = 0;
 
         public dynamic ShowData(string category)
@@ -45,8 +45,6 @@ namespace SpacePort
             //{
             //    Console.WriteLine("Name: {0} \n Gender: {1} ", item.name, item.gender);
             //}
-
-
         }
 
         public List<string> ShipData()
@@ -95,29 +93,29 @@ namespace SpacePort
             return travelers;
         }
 
-        public async Task<List<string>> StarShipData()
+        public async void StarShipData()
         {
+            var client = new RestClient("https://swapi.co/api/");
+
             StartIndex = 1;
-            EndIndex = 87;
+            EndIndex = 37;
             List<string> tmpList = new List<string>();
 
-            for (int i = StartIndex; i <= index; i++)
+            for (int i = StartIndex; i <= EndIndex; i++)
             {
                 
                 var request = new RestRequest("starships/{index}", DataFormat.Json);
-
                 request.AddParameter("index", i, ParameterType.UrlSegment);
-                var timeline = await Client.GetAsync<StarShip>(request);
+                var timeline = await client.GetAsync<StarShip>(request);
                 
                 if (request != null)
                 {
                     tmpList.Add(timeline.StarShipClass);
                 }
-
                 Console.WriteLine(timeline.StarShipClass);               
             }
 
-            return tmpList;
+            //return tmpList;
 
         }
     }

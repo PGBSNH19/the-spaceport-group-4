@@ -4,6 +4,8 @@ using RestSharp;
 using RestSharp.Authenticators;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+
 
 namespace SpacePort
 {
@@ -11,7 +13,12 @@ namespace SpacePort
     {
         static void Main(string[] args)
         {
-            Menu.DisplayMenu();
+            //Menu.DisplayMenu();
+
+            StarWarsApi api = new StarWarsApi();
+            //Task<List<string>> l = api.StarShipData();
+            api.StarShipData();
+
             
             //Dictionary<string, int> dict = new Dictionary<string, int>();
 
