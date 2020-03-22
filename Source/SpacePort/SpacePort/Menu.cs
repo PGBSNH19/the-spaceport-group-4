@@ -18,22 +18,22 @@ namespace SpacePort
 
         public static void DisplayShipTypes()
         {
-            List<string> ships = api.ShipData();
+            //List<string> ships = api.ShipData();
 
-            foreach (var s in ships)
+            /*foreach (var s in ships)
             {
                 Console.WriteLine(s);
-            }
+            }*/
         }
 
         public static void CustomerSignIn()
         {
-            List<string> traveler = api.TravelerData();
+            //List<string> traveler = api.TravelerData();
 
-            foreach (var t in traveler)
+            /*foreach (var t in traveler)
             {
                 Console.WriteLine(t);
-            }
+            }*/
         }
     }
 }
