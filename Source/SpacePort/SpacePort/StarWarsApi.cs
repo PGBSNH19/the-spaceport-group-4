@@ -43,33 +43,6 @@ namespace SpacePort
             }
         }
 
-        /*public async void GetAsyncTravelerData()
-        {
-            EndIndex = 87;
-
-            List<string> tmpList = new List<string>();
-
-            for (int i = StartIndex; i <= EndIndex; i++)
-            {
-                var request = new RestRequest("people/{index}", DataFormat.Json);
-                request.AddParameter("index", i, ParameterType.UrlSegment);
-                var timeline = await Client.GetAsync<Traveler>(request);
-
-                if (timeline.Name != null)
-                {
-                    tmpList.Add(timeline.Name);
-                }
-                Console.WriteLine(timeline.Name);
-            }
-
-            //for testing
-            Console.WriteLine("\n\rLIST");
-            foreach (string s in tmpList)
-            {
-                Console.WriteLine(s);
-            }
-        }*/
-
         public async Task<List<string>> GetAsyncTravelerData()
         {
             EndIndex = 87;
@@ -81,7 +54,7 @@ namespace SpacePort
                 var request = new RestRequest("people/{index}", DataFormat.Json);
                 request.AddParameter("index", i, ParameterType.UrlSegment);
                 var timeline = await Client.GetAsync<Traveler>(request);
-
+                
                 if (timeline.Name != null)
                 {
                     tmpList.Add(timeline.Name);
@@ -97,6 +70,31 @@ namespace SpacePort
             }
 
             return tmpList;
+        }
+
+        public async Task<string> GetAsyncTraveler(string name)
+        {
+
+            name = name.ToLower();
+
+            string req = $"\u003Fsearch={name}";
+            
+            var request = new RestRequest($"people/{req}", Method.GET);
+
+            var response = await Client.ExecuteAsync(request);
+            JObject obj = JObject.Parse(response.Content);
+
+            string actual = "";
+
+            if ((int)obj["count"] == 1)
+            {
+                actual = (string)obj.SelectToken("results[0].name");
+                actual = actual.ToLower();
+            }
+            else if((int)obj["count"] == 0)
+                actual = "nope";
+
+            return actual;
         }
     }
 }

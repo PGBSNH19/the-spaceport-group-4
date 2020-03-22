@@ -23,7 +23,6 @@ namespace XUnitTest.Test
         public void createApiClass()
         {
             StarWarsApi api = new StarWarsApi();
-            api.ShowData("people");
 
             Assert.NotNull(api);
         }
@@ -45,30 +44,35 @@ namespace XUnitTest.Test
             Assert.Equal("https://swapi.co/api/", api.Path);
         }
 
-        [Fact]
-        public void TestShowData()
+        [Theory]
+        [InlineData("Micael Skywalker")]
+        [InlineData("Skywalkeer")]
+        [InlineData("Micael")]
+        [InlineData("CCCCPrttrP")]
+        public void TestFalseAsyncSearchTraveler(string name)
         {
+            name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
+            string isTraveler = api.GetAsyncTraveler(name).Result;
 
-            var data = api.ShowData("people");
-
-            Assert.IsType<Newtonsoft.Json.Linq.JObject>(data);
+            Assert.NotEqual(name, isTraveler);
         }
 
-        [Fact]
-        public void AddShowShipMethod()
+        [Theory]
+        [InlineData("Luke SKYWALKER")]
+        [InlineData("anakin skYwalker")]
+        [InlineData("bB8")]
+        [InlineData("Beru Whitesun Lars")]        
+        public void TestTrueAsyncSearchTraveler(string name)
         {
+            name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            int startIndex = api.StartIndex;
-            int endIndex = api.EndIndex;
-            api.ShipData();
+            string isTraveler = api.GetAsyncTraveler(name).Result;
+
+            Assert.Equal(name,isTraveler);
         }
 
-        [Fact]
-        public void AddShowTravelerMethod()
-        {
-            StarWarsApi api = new StarWarsApi();
-            api.TravelerData();
-        }
+
+
     }
 }

@@ -26,7 +26,7 @@ namespace XUnitTest.Test
         public void CreateMenu()
         {
             //Arrange
-            Menu m;
+           // Menu m;
 
             string SignIn = Menu.SignIn;
             Menu.DisplayMenu();
