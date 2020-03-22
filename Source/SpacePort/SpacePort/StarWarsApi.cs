@@ -3,6 +3,7 @@ using RestSharp;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace SpacePort
 {
@@ -94,7 +95,7 @@ namespace SpacePort
             return travelers;
         }
 
-        public async List<string> StarShipData()
+        public async Task<List<string>> StarShipData()
         {
             StartIndex = 1;
             EndIndex = 87;
@@ -102,11 +103,18 @@ namespace SpacePort
 
             for (int i = StartIndex; i <= index; i++)
             {
+                
                 var request = new RestRequest("starships/{index}", DataFormat.Json);
+
                 request.AddParameter("index", i, ParameterType.UrlSegment);
                 var timeline = await Client.GetAsync<StarShip>(request);
+                
+                if (request != null)
+                {
+                    tmpList.Add(timeline.StarShipClass);
+                }
 
-                Console.WriteLine(timeline.StarShipClass);
+                Console.WriteLine(timeline.StarShipClass);               
             }
 
             return tmpList;
