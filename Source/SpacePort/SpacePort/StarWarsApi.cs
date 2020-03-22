@@ -14,13 +14,11 @@ namespace SpacePort
         public int EndIndex { get; set; }
 
         public RestClient Client = new RestClient("https://swapi.co/api/");
-        private int index = 0;
 
         public async void GetAsyncShipData()
         {
             EndIndex = 37;
-            /*int index = 37;
-            int startIndex = 1;*/
+
             List<string> tmpList = new List<string>();
 
             for (int i = StartIndex; i <= EndIndex; i++)
@@ -30,26 +28,23 @@ namespace SpacePort
 
                 var timeline = await Client.GetAsync<StarShip>(request);
 
-                if(timeline.StarshipClass != null)
+                if (timeline.StarshipClass != null)
                 {
                     tmpList.Add(timeline.StarshipClass);
                 }
                 Console.WriteLine(timeline.StarshipClass);
-
-                
             }
+
+            //for testing
             Console.WriteLine("\n\rLIST");
             foreach (string s in tmpList)
-            {                
+            {
                 Console.WriteLine(s);
             }
         }
 
-        public async void GetAsyncTravelerData()
+        /*public async void GetAsyncTravelerData()
         {
-
-            /*int index = 87;
-            int startIndex = 1;*/
             EndIndex = 87;
 
             List<string> tmpList = new List<string>();
@@ -65,15 +60,43 @@ namespace SpacePort
                     tmpList.Add(timeline.Name);
                 }
                 Console.WriteLine(timeline.Name);
-
-
             }
+
+            //for testing
             Console.WriteLine("\n\rLIST");
             foreach (string s in tmpList)
             {
-
                 Console.WriteLine(s);
             }
+        }*/
+
+        public async Task<List<string>> GetAsyncTravelerData()
+        {
+            EndIndex = 87;
+
+            List<string> tmpList = new List<string>();
+
+            for (int i = StartIndex; i <= EndIndex; i++)
+            {
+                var request = new RestRequest("people/{index}", DataFormat.Json);
+                request.AddParameter("index", i, ParameterType.UrlSegment);
+                var timeline = await Client.GetAsync<Traveler>(request);
+
+                if (timeline.Name != null)
+                {
+                    tmpList.Add(timeline.Name);
+                }
+                Console.WriteLine(timeline.Name);
+            }
+
+            //for testing
+            Console.WriteLine("\n\rLIST");
+            foreach (string s in tmpList)
+            {
+                Console.WriteLine(s);
+            }
+
+            return tmpList;
         }
     }
 }

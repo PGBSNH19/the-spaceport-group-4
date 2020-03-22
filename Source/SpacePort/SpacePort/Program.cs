@@ -16,11 +16,23 @@ namespace SpacePort
             //Menu.DisplayMenu();
 
             StarWarsApi api = new StarWarsApi();
-            //Task<List<string>> l = api.StarShipData();
-            api.GetAsyncShipData();
-            api.GetAsyncTravelerData();
+            
+            //api.GetAsyncShipData();
+            //api.GetAsyncTravelerData();
+
+
+            List<string> strl = api.GetAsyncTravelerData().Result;
+
+            foreach(string s in strl)
+            {
+                Console.WriteLine("==STRL LIST: " + s);
+            }
+
+            Console.WriteLine("AMOUNT: " + strl.Count);
 
             Console.ReadKey();
+
+
             //Dictionary<string, int> dict = new Dictionary<string, int>();
 
             //foreach (string s in arr)
@@ -50,6 +62,8 @@ namespace SpacePort
             //foreach (KeyValuePair<string, int> k in dict)
             //    Console.WriteLine(k);
         }
+
+        //async void WriteResult() { }
 
         //static void CheckInParking(string type, Dictionary<string, int> dict)
         //{
