@@ -93,5 +93,24 @@ namespace SpacePort
             }
             return travelers;
         }
+
+        public async List<string> StarShipData()
+        {
+            StartIndex = 1;
+            EndIndex = 87;
+            List<string> tmpList = new List<string>();
+
+            for (int i = StartIndex; i <= index; i++)
+            {
+                var request = new RestRequest("starships/{index}", DataFormat.Json);
+                request.AddParameter("index", i, ParameterType.UrlSegment);
+                var timeline = await Client.GetAsync<StarShip>(request);
+
+                Console.WriteLine(timeline.StarShipClass);
+            }
+
+            return tmpList;
+
+        }
     }
 }
