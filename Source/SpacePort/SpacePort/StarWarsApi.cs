@@ -74,7 +74,6 @@ namespace SpacePort
 
         public async Task<string> GetAsyncTraveler(string name)
         {
-
             name = name.ToLower();
 
             string req = $"\u003Fsearch={name}";
