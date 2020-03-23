@@ -15,7 +15,7 @@ namespace SpacePort
 
         public RestClient Client = new RestClient("https://swapi.co/api/");
 
-        public async void GetAsyncShipData()
+        public async Task<List<string>> GetAsyncShipData()
         {
             EndIndex = 37;
 
@@ -41,6 +41,8 @@ namespace SpacePort
             {
                 Console.WriteLine(s);
             }
+
+            return tmpList;
         }
 
         public async Task<List<string>> GetAsyncTravelerData()
@@ -94,7 +96,13 @@ namespace SpacePort
                 
             }
             else if((int)obj["count"] == 0)
+            {
                 actual = "nope";
+            }               
+            else
+            {
+                actual = "nope";
+            }
 
             if (actual == name)
             {

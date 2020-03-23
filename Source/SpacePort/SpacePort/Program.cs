@@ -13,9 +13,14 @@ namespace SpacePort
     {
         static void Main(string[] args)
         {
-            Menu.DisplayMenu();
+            // Menu.DisplayMenu();
+            Console.ReadKey();
 
-            //Dictionary<string, int> dict = new Dictionary<string, int>();
+            StarWarsApi api = new StarWarsApi();
+            //List<string> list = api.GetAsyncShipData().Result;
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+
+            //string[] arr = { "Large", "Medium", "Small", "Small" };
 
             //foreach (string s in arr)
             //{
@@ -43,18 +48,22 @@ namespace SpacePort
 
             //foreach (KeyValuePair<string, int> k in dict)
             //    Console.WriteLine(k);
+
+
+
         }
 
-        //async void WriteResult() { }
+        async void WriteResult() { }
 
-        //static void CheckInParking(string type, Dictionary<string, int> dict)
-        //{
-        //    dict[type] -= 1;
-        //}
+        static void CheckInParking(string type, Dictionary<string, int> dict)
+        {
+            dict[type] -= 1;
+        }
 
-        //static void CheckOutParking(string type, Dictionary<string, int> dict)
-        //{
-        //    dict[type] += 1;
-        //}
+        static void CheckOutParking(string type, Dictionary<string, int> dict)
+        {
+            dict[type] += 1;
+        }
+
     }
 }
