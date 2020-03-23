@@ -51,9 +51,9 @@ namespace XUnitTest.Test
         [InlineData("CCCCPrttrP")]
         public void TestFalseAsyncSearchTraveler(string name)
         {
-            name = name.ToLower();
+           // name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            bool isTraveler = api.GetAsyncTraveler(name).Result;
+            bool isTraveler = api.GetAsyncTraveler(name.ToLower()).Result;
 
             Assert.False(isTraveler);
         }
@@ -65,9 +65,9 @@ namespace XUnitTest.Test
         [InlineData("Beru Whitesun Lars")]        
         public void TestTrueAsyncSearchTraveler(string name)
         {
-            name = name.ToLower();
+            //name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            bool isTraveler = api.GetAsyncTraveler(name).Result;
+            bool isTraveler = api.GetAsyncTraveler(name.ToLower()).Result;
 
             Assert.True(isTraveler);
         }

@@ -20,4 +20,6 @@ namespace SpacePort
         public int TotalPrice { get; set; }
         public int Duration { get; set; }
     }
+
+
 }
