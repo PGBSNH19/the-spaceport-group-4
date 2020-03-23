@@ -13,25 +13,7 @@ namespace SpacePort
     {
         static void Main(string[] args)
         {
-            //Menu.DisplayMenu();
-
-            StarWarsApi api = new StarWarsApi();
-            
-            //api.GetAsyncShipData();
-            //api.GetAsyncTravelerData();
-
-
-            List<string> strl = api.GetAsyncTravelerData().Result;
-
-            foreach(string s in strl)
-            {
-                Console.WriteLine("==STRL LIST: " + s);
-            }
-
-            Console.WriteLine("AMOUNT: " + strl.Count);
-
-            Console.ReadKey();
-
+            Menu.DisplayMenu();
 
             //Dictionary<string, int> dict = new Dictionary<string, int>();
 

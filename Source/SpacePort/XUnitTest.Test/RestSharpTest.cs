@@ -53,9 +53,9 @@ namespace XUnitTest.Test
         {
             name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            string isTraveler = api.GetAsyncTraveler(name).Result;
+            bool isTraveler = api.GetAsyncTraveler(name).Result;
 
-            Assert.NotEqual(name, isTraveler);
+            Assert.False(isTraveler);
         }
 
         [Theory]
@@ -67,9 +67,9 @@ namespace XUnitTest.Test
         {
             name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            string isTraveler = api.GetAsyncTraveler(name).Result;
+            bool isTraveler = api.GetAsyncTraveler(name).Result;
 
-            Assert.Equal(name,isTraveler);
+            Assert.True(isTraveler);
         }
 
 

@@ -72,9 +72,10 @@ namespace SpacePort
             return tmpList;
         }
 
-        public async Task<string> GetAsyncTraveler(string name)
+        public async Task<bool> GetAsyncTraveler(string name)
         {
             name = name.ToLower();
+            bool isEqual = false;
 
             string req = $"\u003Fsearch={name}";
             
@@ -89,11 +90,18 @@ namespace SpacePort
             {
                 actual = (string)obj.SelectToken("results[0].name");
                 actual = actual.ToLower();
+
+                
             }
             else if((int)obj["count"] == 0)
                 actual = "nope";
 
-            return actual;
+            if (actual == name)
+            {
+                isEqual = true;
+            }
+
+            return isEqual;
         }
     }
 }
