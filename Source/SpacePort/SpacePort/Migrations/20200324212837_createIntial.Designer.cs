@@ -10,8 +10,8 @@ using SpacePort.Models;
 namespace SpacePort.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200324204505_start")]
-    partial class start
+    [Migration("20200324212837_createIntial")]
+    partial class createIntial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace SpacePort.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketRef")
+                    b.Property<int>("TicketID")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalPrice")
@@ -39,7 +39,7 @@ namespace SpacePort.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("TicketRef")
+                    b.HasIndex("TicketID")
                         .IsUnique();
 
                     b.ToTable("Receipt");
@@ -59,6 +59,9 @@ namespace SpacePort.Migrations
                     b.Property<decimal>("ShipSize")
                         .HasColumnType("decimal(10, 4)");
 
+                    b.Property<string>("ShipType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("TimeOfArrival")
                         .HasColumnType("datetime2");
 
@@ -72,9 +75,9 @@ namespace SpacePort.Migrations
 
             modelBuilder.Entity("SpacePort.Models.Receipt", b =>
                 {
-                    b.HasOne("SpacePort.Models.Ticket", "TicketId")
-                        .WithOne("ReceiptId")
-                        .HasForeignKey("SpacePort.Models.Receipt", "TicketRef")
+                    b.HasOne("SpacePort.Models.Ticket", "Ticket")
+                        .WithOne("Receipt")
+                        .HasForeignKey("SpacePort.Models.Receipt", "TicketID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

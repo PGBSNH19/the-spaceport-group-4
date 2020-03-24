@@ -13,8 +13,9 @@ namespace SpacePort.Models
         public string Person { get; set; }
         [Column(TypeName = "decimal(10, 4)")]
         public decimal ShipSize { get; set; }
+        public string ShipType { get; set; }
         public DateTime TimeOfArrival { get; set; }
         public DateTime TimeOfDepature { get; set; }
-        public Receipt ReceiptId { get; set; }
+        public Receipt Receipt { get; set; }
     }
 }

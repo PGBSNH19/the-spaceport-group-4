@@ -20,9 +20,9 @@ namespace SpacePort.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Ticket>()
-                .HasOne(a => a.ReceiptId)
-                .WithOne(b => b.TicketId)
-                .HasForeignKey<Receipt>(b => b.TicketRef);
+                .HasOne(a => a.Receipt)
+                .WithOne(b => b.Ticket);
+                //.HasForeignKey<Receipt>(x => x.TicketRef);
         }
     }
 }

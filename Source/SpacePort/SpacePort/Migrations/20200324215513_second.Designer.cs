@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpacePort.Models;
 
 namespace SpacePort.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200324215513_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace SpacePort.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketID")
+                    b.Property<int>("TicketRef")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalPrice")
@@ -37,7 +39,7 @@ namespace SpacePort.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("TicketID")
+                    b.HasIndex("TicketRef")
                         .IsUnique();
 
                     b.ToTable("Receipt");
@@ -75,7 +77,7 @@ namespace SpacePort.Migrations
                 {
                     b.HasOne("SpacePort.Models.Ticket", "Ticket")
                         .WithOne("Receipt")
-                        .HasForeignKey("SpacePort.Models.Receipt", "TicketID")
+                        .HasForeignKey("SpacePort.Models.Receipt", "TicketRef")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
