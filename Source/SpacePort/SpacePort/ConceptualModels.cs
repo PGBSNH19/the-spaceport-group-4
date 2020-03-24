@@ -11,6 +11,12 @@ namespace SpacePort
         public string ShipSize { get; set; }
         public DateTime TimeOfArrival { get; set; }
         public DateTime TimeOfDepature { get; set; }
+
+        public int ParkedTimeInMinutes() 
+        {
+            var parked = TimeOfDepature - TimeOfArrival;
+            return (int)parked.TotalMinutes;
+        }
     }
 
     public class Receipt
