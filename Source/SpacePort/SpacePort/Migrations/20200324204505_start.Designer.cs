@@ -10,7 +10,7 @@ using SpacePort.Models;
 namespace SpacePort.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200324195933_start")]
+    [Migration("20200324204505_start")]
     partial class start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

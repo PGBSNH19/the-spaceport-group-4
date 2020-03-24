@@ -11,8 +11,9 @@ namespace SpacePort.Models
         public DbSet<Receipt> Receipt { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(@"data source =.\SQLEXPRESS; initial catalog = SpacePort; integrated security = SSPI");
+            optionBuilder.UseSqlServer(@"SERVER = den1.mssql7.gear.host; DATABASE = spaceportdb; UID = spaceportdb; PWD = Gk03R!351K-W");
 
+            //optionBuilder.UseSqlServer(@"data source =.\SQLEXPRESS; initial catalog = SpacePort; integrated security = SSPI");
             //base.OnConfiguring(optionBuilder);
             //optionBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["coreData"].ToString());
         }
