@@ -15,11 +15,11 @@ namespace SpacePort
 
         public RestClient Client = new RestClient("https://swapi.co/api/");
 
-        public async Task<List<string>> GetAsyncShipData()
+        public async Task<Dictionary<string, int>> GetAsyncShipData()
         {
             EndIndex = 37;
 
-            List<string> tmpList = new List<string>();
+            Dictionary<string, int> tmpDict = new Dictionary<string, int>();
 
             for (int i = StartIndex; i <= EndIndex; i++)
             {
@@ -30,19 +30,20 @@ namespace SpacePort
 
                 if (timeline.StarshipClass != null)
                 {
-                    tmpList.Add(timeline.StarshipClass);
+                    if (!tmpDict.ContainsKey(timeline.StarshipClass))
+                        tmpDict.Add(timeline.StarshipClass, 0);
                 }
                 Console.WriteLine(timeline.StarshipClass);
             }
 
             //for testing
             Console.WriteLine("\n\rLIST");
-            foreach (string s in tmpList)
+            foreach (KeyValuePair<string,int> s in tmpDict)
             {
                 Console.WriteLine(s);
             }
 
-            return tmpList;
+            return tmpDict;
         }
 
         public async Task<List<string>> GetAsyncTravelerData()
