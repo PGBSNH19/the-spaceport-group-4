@@ -8,7 +8,7 @@ namespace SpacePort
         StarWarsApi api = new StarWarsApi();
 
         public Dictionary<string, int> ShipTypes;
-
+        private Dictionary<string, int> parkingCapacity;
         private void GetParkingLots()
         {
             this.ShipTypes = api.GetAsyncShipData().Result;
@@ -25,9 +25,31 @@ namespace SpacePort
                 string key = keys[i];
                 this.ShipTypes[key] = amount;
             }
+
+            parkingCapacity = ShipTypes;
         }
 
-        private 
+        public bool CheckParkingAvalibility(string shipType)
+        {
+            int value = ShipTypes[shipType];
+            return value > 0;            
+        }
 
+        public bool CheckMaxLots (string shipType)
+        {
+            int value = ShipTypes[shipType];
+            int maxValue = parkingCapacity[shipType];
+            return value <= maxValue;
+        }
+
+        public void Park(string shipType)
+        {
+            ShipTypes[shipType] -= 1;
+        }
+        
+        public void Leave(string shipType)
+        {
+            ShipTypes[shipType] += 1;
+        }
     }    
 }
