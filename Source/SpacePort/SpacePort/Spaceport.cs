@@ -19,7 +19,7 @@ namespace SpacePort
             Random randomAmount = new Random();
 
             List<string> keys = new List<string>(ShipTypes.Keys);
-            for(int i = o; i < keys.Count; i++)
+            for(int i = 0; i < keys.Count; i++)
             {
                 int amount = randomAmount.Next(0, 10);
                 string key = keys[i];
@@ -50,6 +50,24 @@ namespace SpacePort
         public void Leave(string shipType)
         {
             ShipTypes[shipType] += 1;
+        }
+
+        //public int CalculateParkingTariff(string shipType)
+        //{
+        //    return shipType;
+        //}
+
+        public List<string> GenerateReceipt(DateTime startTime, DateTime dateTime, string shipType)
+        {
+            List<string> receiptTmp = new List<string>();
+
+            //int cost = CalculateParkingTariff(shipType);
+            
+
+
+            return receiptTmp;
+
+
         }
     }    
 }

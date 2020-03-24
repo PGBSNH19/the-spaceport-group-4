@@ -17,8 +17,8 @@ namespace SpacePort
             Console.ReadKey();
 
             StarWarsApi api = new StarWarsApi();
-            //List<string> list = api.GetAsyncShipData().Result;
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Dictionary<string, int> dict = api.GetAsyncShipData().Result;
+            //Dictionary<string, int> dict = new Dictionary<string, int>();
 
             //string[] arr = { "Large", "Medium", "Small", "Small" };
 
@@ -53,17 +53,17 @@ namespace SpacePort
 
         }
 
-        async void WriteResult() { }
+        //async void WriteResult() { }
 
-        static void CheckInParking(string type, Dictionary<string, int> dict)
-        {
-            dict[type] -= 1;
-        }
+        //static void CheckInParking(string type, Dictionary<string, int> dict)
+        //{
+        //    dict[type] -= 1;
+        //}
 
-        static void CheckOutParking(string type, Dictionary<string, int> dict)
-        {
-            dict[type] += 1;
-        }
+        //static void CheckOutParking(string type, Dictionary<string, int> dict)
+        //{
+        //    dict[type] += 1;
+        //}
 
     }
 }
