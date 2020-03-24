@@ -1,5 +1,6 @@
 using RestSharp;
 using SpacePort;
+using SpacePort.Models;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -52,8 +53,8 @@ namespace XUnitTest.Test
             //Arrange
             Ticket ticket = new Ticket();
 
-            int ticketID = ticket.TicketID;
-            string shipSize = ticket.ShipSize;
+            int ticketID = ticket.ID;
+            decimal shipSize = ticket.ShipSize;
             DateTime timeOfArrival = ticket.TimeOfArrival;
             DateTime timeOfDepature = ticket.TimeOfDepature;
             //Act
@@ -67,8 +68,8 @@ namespace XUnitTest.Test
             //Arrange
             Receipt receipt = new Receipt();
 
-            int receiptID = receipt.ReceiptID;
-            int ticketID = receipt.TicketID;
+            int receiptID = receipt.ID;
+            int ticketID = receipt.ID;
             int totalPrice = receipt.TotalPrice;
 
             //Act
