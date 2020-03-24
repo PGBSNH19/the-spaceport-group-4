@@ -61,6 +61,13 @@ namespace SpacePort
             return 10;
         }
 
+
+        /*public int ParkedTimeInMinutes()
+        {
+            var parked = TimeOfDepature - TimeOfArrival;
+            return (int)parked.TotalMinutes;
+        }*/
+
         public List<string> GenerateReceipt(DateTime startTime, DateTime dateTime, string shipType)
         {
             List<string> receiptTmp = new List<string>();
