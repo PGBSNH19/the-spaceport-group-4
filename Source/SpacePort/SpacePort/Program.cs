@@ -16,12 +16,14 @@ namespace SpacePort
             // Menu.DisplayMenu();
             //Console.ReadKey();
 
+            /*
             Ticket ticket = new Ticket();
             ticket.TimeOfArrival = new DateTime(2020, 03, 24, 15, 0, 0);
             ticket.TimeOfDepature = new DateTime(2020, 03, 24, 15, 50, 0);
 
             Console.WriteLine(ticket.ParkedTimeInMinutes());
             Console.ReadKey();
+            */
 
             //StarWarsApi api = new StarWarsApi();
             //Dictionary<string, int> dict = api.GetAsyncShipData().Result;
