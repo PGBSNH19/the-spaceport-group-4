@@ -52,10 +52,14 @@ namespace SpacePort
             ShipTypes[shipType] += 1;
         }
 
-        //public int CalculateParkingTariff(string shipType)
-        //{
-        //    return shipType;
-        //}
+        public int CalculateParkingTariff(string shipType)
+        {
+
+
+
+            //tmp value
+            return 10;
+        }
 
         public List<string> GenerateReceipt(DateTime startTime, DateTime dateTime, string shipType)
         {
