@@ -11,7 +11,7 @@ namespace SpacePort
         private Dictionary<string, int> parkingCapacity;
         private void GetParkingLots()
         {
-            this.ShipTypes = api.GetAsyncShipData().Result;
+            this.ShipTypes = api.GetShipDataAsync().Result;
         }
 
         private void GenerateLotAmount()

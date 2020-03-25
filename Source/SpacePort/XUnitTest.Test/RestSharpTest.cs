@@ -53,7 +53,7 @@ namespace XUnitTest.Test
         {
            // name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            bool isTraveler = api.GetAsyncTraveler(name.ToLower()).Result;
+            bool isTraveler = api.GetTravelerAsync(name.ToLower()).Result;
 
             Assert.False(isTraveler);
         }
@@ -67,7 +67,7 @@ namespace XUnitTest.Test
         {
             //name = name.ToLower();
             StarWarsApi api = new StarWarsApi();
-            bool isTraveler = api.GetAsyncTraveler(name.ToLower()).Result;
+            bool isTraveler = api.GetTravelerAsync(name.ToLower()).Result;
 
             Assert.True(isTraveler);
         }
