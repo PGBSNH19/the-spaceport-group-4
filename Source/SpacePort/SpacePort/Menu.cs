@@ -68,6 +68,7 @@ namespace SpacePort
         public static void DisplayShipTypes()
         {
             spacePort.GetParkingLots();
+            spacePort.GenerateLotAmount();
         }
 
         public static void CustomerSignIn()
