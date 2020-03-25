@@ -7,7 +7,5 @@ namespace SpacePort
     class StarShip
     {
         public string StarshipClass {get;set;}
-
-
     }
 }

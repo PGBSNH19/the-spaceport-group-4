@@ -29,7 +29,7 @@ namespace XUnitTest.Test
             //Arrange
            // Menu m;
 
-            string SignIn = Menu.SignIn;
+            string SignIn = Menu.CustomerName;
             Menu.DisplayMenu();
             Menu.DisplayShipTypes();
             Menu.CustomerSignIn();

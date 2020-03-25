@@ -13,9 +13,18 @@ namespace SpacePort
     {
         static void Main(string[] args)
         {
-            // Menu.DisplayMenu();
-            //Console.ReadKey();
+            Spaceport spacePort = new Spaceport();
+            spacePort.GetParkingLots();
 
+            Menu.DisplayMenu();
+
+
+
+
+
+
+            //Console.ReadKey();
+            
             /*
             Ticket ticket = new Ticket();
             ticket.TimeOfArrival = new DateTime(2020, 03, 24, 15, 0, 0);

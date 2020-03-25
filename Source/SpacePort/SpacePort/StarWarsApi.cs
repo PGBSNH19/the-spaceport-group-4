@@ -34,6 +34,8 @@ namespace SpacePort
                         tmpDict.Add(timeline.StarshipClass, 0);
                 }
                 Console.WriteLine(timeline.StarshipClass);
+
+
             }
 
             //for testing

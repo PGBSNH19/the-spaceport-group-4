@@ -9,12 +9,12 @@ namespace SpacePort
 
         public Dictionary<string, int> ShipTypes;
         private Dictionary<string, int> parkingCapacity;
-        private void GetParkingLots()
+        public void GetParkingLots()
         {
             this.ShipTypes = api.GetShipDataAsync().Result;
         }
 
-        private void GenerateLotAmount()
+        public void GenerateLotAmount()
         {
             Random randomAmount = new Random();
 
