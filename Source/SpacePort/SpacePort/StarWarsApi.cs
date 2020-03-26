@@ -9,7 +9,7 @@ namespace SpacePort
 {
     public class StarWarsApi
     {
-        //public string Path { get; } = "https://swapi.co/api/";
+        public string Path { get; } = "https://swapi.co/api/";
         //public int StartIndex { get; } = 1;
         //public int EndIndex { get; set; }
 
@@ -129,8 +129,9 @@ namespace SpacePort
             return jObject;
         }
 
-        public bool VerifyTraveler(JObject jObject, string name)
+        public bool ValidateTraveler(JObject jObject, string name)
         {
+            name = name.ToLower();
             string actual = "";
             bool isVerified = false;
 
@@ -157,7 +158,7 @@ namespace SpacePort
             return isVerified;
         }
 
-        public List<string> FetchTravelerShips(JObject jObject)
+        public List<string> FetchTravelerShipURI(JObject jObject)
         {
             List<string> shipURI = new List<string>();
 

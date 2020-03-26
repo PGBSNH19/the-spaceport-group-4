@@ -62,7 +62,9 @@ namespace SpacePort
 
         private static bool ValidateCustomer()
         {
-            return swAPI.GetTravelerAsync(CustomerName.ToLower()).Result;        
+            //return swAPI.GetTravelerAsync(CustomerName.ToLower()).Result; 
+
+            return true;
         }
 
         public static void DisplayShipTypes()
