@@ -168,16 +168,19 @@ namespace SpacePort
             return shipURI;
         }
 
-        public async Task<Dictionary<string,double>> GetShipData(string shipURI)
+        public async Task<Dictionary<string,double>> GetShipDataAsync(List<string> shipURIs)
         {
             Dictionary<string, double> dict = new Dictionary<string, double>();
+            
+            foreach(var item in shipURIs)
+            {
+                var request = new RestRequest(item, Method.GET);
 
-            var request = new RestRequest(shipURI, Method.GET);
-
-            var response = await Client.ExecuteAsync(request);
-            JObject jObject = JObject.Parse(response.Content);
-            dict.Add((string)jObject["name"], (double)jObject["length"]);
-
+                var response = await Client.ExecuteAsync(request);
+                JObject jObject = JObject.Parse(response.Content);
+                dict.Add((string)jObject["name"], (double)jObject["length"]);
+            }
+            
             return dict;
         }
  

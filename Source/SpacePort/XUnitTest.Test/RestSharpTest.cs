@@ -77,7 +77,7 @@ namespace XUnitTest.Test
         [InlineData("Micael skYwalker")]
         [InlineData("bB8")]
         [InlineData("Beru Whitesun Lars")]
-        public void FindStarWarsCharacterData_SearchByName_ReturnJObjectResultAsync(string name)
+        public void GetTravelerDataAsunc_SearchByName_ExpectJObjectReturned(string name)
         {
             StarWarsApi api = new StarWarsApi();
 
@@ -91,7 +91,7 @@ namespace XUnitTest.Test
         [InlineData("Skywalkeer")]
         [InlineData("Micael")]
         [InlineData("CCCCPrttrP")]
-        public void ValidateIFStarWarsCharacter_IncorrectInput_ReturnFalse(string name)
+        public void ValidateTraveler_IncorrectInput_ExpectFalse(string name)
         {
             StarWarsApi api = new StarWarsApi();
             JObject jObject = api.GetTravelerDataAsync(name.ToLower()).Result;
@@ -106,7 +106,7 @@ namespace XUnitTest.Test
         [InlineData("anakin skYwalker")]
         [InlineData("bB8")]
         [InlineData("Beru Whitesun Lars")]
-        public void ValidateIFStarWarsCharacter_CorrecttInput_ReturnTrue(string name)
+        public void ValidateTraveler_CorrecttInput_ExpectTrue(string name)
         {
             StarWarsApi api = new StarWarsApi();
             JObject jObject = api.GetTravelerDataAsync(name.ToLower()).Result;
@@ -116,10 +116,51 @@ namespace XUnitTest.Test
             Assert.True(isTraveler);
         }
 
-        //[Fact]
-        //public void 
+        [Fact]
+        public void FetchTravelerShipURI_FromRecievedJObject_FetchCorrectShipURI()
+        {
 
+            string name = "Luke SKYWalKeR";
+            List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };            
+            
+            StarWarsApi api = new StarWarsApi();
+            JObject jObject = api.GetTravelerDataAsync(name.ToLower()).Result;
+            List<string> actualURIs = api.FetchTravelerShipURI(jObject);
+            //bool isTraveler = api.ValidateTraveler(jObject, name.ToLower());
 
+            //if (isTraveler == true)
+            //{
+            //    actualURIs = api.FetchTravelerShipURI(jObject);
 
+            //}
+
+            Assert.Equal(expectedURIs, actualURIs);
+        }
+
+        [Fact]
+        public void GetShipDataAsync_InsertListOfURI_ReturnShipValues()
+        {
+            string name = "Luke SKYWalKeR";
+            
+            Dictionary<string, double> ExpectedShipData = new Dictionary<string, double>();
+            ExpectedShipData.Add("X-wing", 12.5);
+            ExpectedShipData.Add("Imperial shuttle", 20);       
+
+            StarWarsApi api = new StarWarsApi();
+            JObject jObject = api.GetTravelerDataAsync(name.ToLower()).Result;
+            List<string> shipURIs = api.FetchTravelerShipURI(jObject);
+            //bool isTraveler = api.ValidateTraveler(jObject, name.ToLower());
+
+            //if (isTraveler == true)
+            //{
+            //    actualURIs = api.FetchTravelerShipURI(jObject);
+
+            //}
+
+            Dictionary<string, double> actualShipData = api.GetShipDataAsync(shipURIs).Result;
+
+            Assert.Equal(ExpectedShipData, actualShipData);
+
+        }
     }
-}
+}   
