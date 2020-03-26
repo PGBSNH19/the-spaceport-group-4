@@ -9,13 +9,14 @@ namespace SpacePort.Models
     public class Ticket
     {
         public int ID { get; set; }
-        [StringLength(15, ErrorMessage = "Text length should be shorter than 15 Characters")]
-        public string Person { get; set; }
-        [Column(TypeName = "decimal(10, 4)")]
-        public decimal ShipSize { get; set; }
-        public string ShipType { get; set; }
-        public DateTime TimeOfArrival { get; set; }
-        public DateTime TimeOfDepature { get; set; }
+        [StringLength(25, ErrorMessage = "Text length should be shorter than 15 Characters")]
+        [Required]
+        public string PersonName { get; set; }
+        [StringLength(25, ErrorMessage = "Text length should be shorter than 15 Characters")]
+        [Required]
+        public string ShipName { get; set; }
+        public DateTime DateTimeOfArrival { get; set; }
+        public DateTime DateTimeOfDepature { get; set; }
         public Receipt Receipt { get; set; }
     }
 }

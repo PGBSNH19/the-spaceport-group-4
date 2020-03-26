@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SpacePort.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,11 +13,10 @@ namespace SpacePort.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Person = table.Column<string>(maxLength: 15, nullable: true),
-                    ShipSize = table.Column<decimal>(type: "decimal(10, 4)", nullable: false),
-                    ShipType = table.Column<string>(nullable: true),
-                    TimeOfArrival = table.Column<DateTime>(nullable: false),
-                    TimeOfDepature = table.Column<DateTime>(nullable: false)
+                    PersonName = table.Column<string>(maxLength: 25, nullable: false),
+                    ShipName = table.Column<string>(maxLength: 25, nullable: false),
+                    DateTimeOfArrival = table.Column<DateTime>(nullable: false),
+                    DateTimeOfDepature = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

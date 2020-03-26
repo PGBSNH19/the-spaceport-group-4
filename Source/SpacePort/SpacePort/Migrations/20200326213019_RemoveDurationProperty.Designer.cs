@@ -10,8 +10,8 @@ using SpacePort.Models;
 namespace SpacePort.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200325192249_initialMigration")]
-    partial class initialMigration
+    [Migration("20200326213019_RemoveDurationProperty")]
+    partial class RemoveDurationProperty
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,9 +27,6 @@ namespace SpacePort.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
 
                     b.Property<int>("TicketID")
                         .HasColumnType("int");
@@ -52,21 +49,21 @@ namespace SpacePort.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Person")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
-                    b.Property<decimal>("ShipSize")
-                        .HasColumnType("decimal(10, 4)");
-
-                    b.Property<string>("ShipType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TimeOfArrival")
+                    b.Property<DateTime>("DateTimeOfArrival")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("TimeOfDepature")
+                    b.Property<DateTime>("DateTimeOfDepature")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("PersonName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
+
+                    b.Property<string>("ShipName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.HasKey("ID");
 

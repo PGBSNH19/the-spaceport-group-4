@@ -54,9 +54,8 @@ namespace XUnitTest.Test
             Ticket ticket = new Ticket();
 
             int ticketID = ticket.ID;
-            decimal shipSize = ticket.ShipSize;
-            DateTime timeOfArrival = ticket.TimeOfArrival;
-            DateTime timeOfDepature = ticket.TimeOfDepature;
+            DateTime timeOfArrival = ticket.DateTimeOfArrival;
+            DateTime timeOfDepature = ticket.DateTimeOfDepature;
             //Act
             //Assert
             Assert.NotNull(ticket);
@@ -69,7 +68,7 @@ namespace XUnitTest.Test
             Receipt receipt = new Receipt();
 
             int receiptID = receipt.ID;
-            int ticketID = receipt.ID;
+            int ticketID = receipt.TicketID;
             int totalPrice = receipt.TotalPrice;
 
             //Act

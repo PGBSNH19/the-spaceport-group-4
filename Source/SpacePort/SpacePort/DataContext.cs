@@ -16,7 +16,6 @@ namespace SpacePort.Models
             modelBuilder.Entity<Ticket>()
                 .HasOne(a => a.Receipt)
                 .WithOne(b => b.Ticket);
-            //.HasForeignKey<Receipt>(x => x.TicketRef);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
@@ -27,15 +26,7 @@ namespace SpacePort.Models
 
             var defaultConnection = configuration.GetConnectionString("DefaultConnection");
             optionBuilder.UseSqlServer(defaultConnection);
-
-
-
-            //    optionBuilder.UseSqlServer(@"SERVER = den1.mssql7.gear.host; DATABASE = spaceportdb; UID = spaceportdb; PWD = Gk03R!351K-W");
-
-            //    optionBuilder.UseSqlServer(@"data source =.\SQLEXPRESS; initial catalog = SpacePort; integrated security = SSPI");
-            //    base.OnConfiguring(optionBuilder);
-
-            //    optionBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["coreData"].ToString());
         }
+
     }
 }
