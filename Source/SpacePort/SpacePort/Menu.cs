@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpacePort.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SpacePort
@@ -10,15 +11,10 @@ namespace SpacePort
         public static string CustomerName { get; private set; }
         public static int MenuChoice { get; private set; }
 
+        DateTime startTime;
+        DateTime endTime;
 
-
-        public static void Initiate()
-        {
-            
-        }
-
-
-        public static void DisplayMenu()
+        public static void Display()
         {
             Console.WriteLine("Hello, my friend. Stay awhile and listen");
             Console.WriteLine("I am A.S.P.P.A:  *BEEP* *BEEP*  Your Automated SpacePort Parking Assistent \n\r");
@@ -43,6 +39,13 @@ namespace SpacePort
                     Console.Write("Your name please: ");
                     CustomerSignIn();
                 }
+
+                Console.WriteLine("Please enter your time of arrival (YYYY/MM/DD HH:MM): ");
+                string arrivalInput = Console.ReadLine();
+                DateTime startTime = DateTime.Parse(arrivalInput);
+                Console.WriteLine("Please enter your time of depature (YYYY/MM/DD HH:MM): ");
+                string depatureInput = Console.ReadLine();
+                DateTime endTime = DateTime.Parse(depatureInput);
             }
             else if(MenuChoice == 2)
             {
@@ -62,12 +65,15 @@ namespace SpacePort
 
         private static bool ValidateCustomer()
         {
-            return swAPI.GetTravelerAsync(CustomerName.ToLower()).Result;        
+            //return swAPI.GetTravelerAsync(CustomerName.ToLower()).Result; 
+
+            return true;
         }
 
         public static void DisplayShipTypes()
         {
             spacePort.GetParkingLots();
+            spacePort.GenerateLotAmount();
         }
 
         public static void CustomerSignIn()
