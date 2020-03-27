@@ -11,12 +11,13 @@ namespace SpacePort
 
         static JObject jObject = new JObject();
 
+        static string travelerName = "";
+        static string shipName = "";
         static DateTime arrivalTime;
         static DateTime departureTime;
-        static int totalCost;
-        static string shipName;
+        static int totalCost = 0;
+        static double duration;
 
-        public static string TravelerName { get; private set; }
         public static int MenuChoice { get; private set; }
 
         public static void Display()
@@ -62,20 +63,17 @@ namespace SpacePort
                 string depatureInput = Console.ReadLine();
                 departureTime = InputDate(depatureInput);
 
-                
-
-                Dictionary<string,double> ships = GetShips();
+                Dictionary<string, double> ships = GetShips();
                 List<string> keys = DisplayTravelerShips(ships);
-                
 
                 ParkShip(ships, keys);
-                //Pay
-                Console.WriteLine($"Please pay {totalCost} credits to park your ship");
+                Pay();
                 Console.Write("YES / NO :");
                 string park = Console.ReadLine();
 
                 if(park == "YES")
                 {
+
                     ParkingConfirmation();
                     //clear console, go back to menu
                 }
@@ -90,6 +88,10 @@ namespace SpacePort
             else if (MenuChoice == 2)
             {
                 //Checkout method called, and check in database if user is checked in
+                Console.WriteLine("I find your lack of faith disturbing.");
+                Console.Write("To check out, please enter your name: ");
+                string name = Console.ReadLine();
+                spacePort.DisplayReceipt(name);
             }
 
             //Checkin confirmation text: "The garbage’ll do!” 
@@ -107,8 +109,8 @@ namespace SpacePort
 
         private static bool ValidateTraveler()
         {
-            jObject = swAPI.GetTravelerDataAsync(TravelerName).Result;
-            bool isValid = swAPI.ValidateTraveler(jObject, TravelerName);
+            jObject = swAPI.GetTravelerDataAsync(travelerName).Result;
+            bool isValid = swAPI.ValidateTraveler(jObject, travelerName);
             return isValid;
         }
 
@@ -124,7 +126,7 @@ namespace SpacePort
         {
 
             List<string> keys = new List<string>(ships.Keys);
-            double duration = spacePort.CalculateStayDuration(arrivalTime, departureTime);
+            duration = spacePort.CalculateStayDuration(arrivalTime, departureTime);
 
             Console.WriteLine("Avaliable ships: \n\r");
 
@@ -132,7 +134,7 @@ namespace SpacePort
             foreach (string key in keys)
             {
                 int lot = spacePort.CalculateParkingAvailability(ships[key]);
-                int totalCost = spacePort.CalculateParkingTariff(ships[key], duration);
+                totalCost = spacePort.CalculateParkingTariff(ships[key], duration);
                 Console.WriteLine($"[{index}.\t{key}\t\t\tAvaliable lots: {lot}\tTotal Cost: {totalCost}]");
                 index++;
             }
@@ -144,31 +146,34 @@ namespace SpacePort
         {
             Console.Write("Plese select ship to Check In: ");
             int ship = int.Parse(Console.ReadLine());
-            string shipName = "";
+            //string shipName = "";
             for (int i = 0; i <= ships.Count; i++)
             {
                 if (ship == i)
                     shipName = keys[i - 1];
             }
-            Console.WriteLine(shipName);
+            Console.WriteLine("The garbage’ll do!");
+            //Console.WriteLine(shipName);
 
             
         }
 
         public static void Pay()
         {
-
+            Console.WriteLine($"Please pay {totalCost} credits to park your ship");
         }
 
         public static void ParkingConfirmation()
         {
+            Console.WriteLine("Thank you for choosing to stay at a Far Far Away Starport");
 
+            spacePort.InsertDataToTciketDB(travelerName, shipName, arrivalTime, departureTime, totalCost);
         }
 
         public static void TravelerSignIn()
         {
 
-            TravelerName = Console.ReadLine();
+            travelerName = Console.ReadLine();
         }
     }
 }

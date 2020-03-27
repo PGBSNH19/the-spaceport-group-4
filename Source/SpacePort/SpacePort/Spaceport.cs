@@ -43,10 +43,6 @@ namespace SpacePort
             ShipTypes[shipType] += 1;
         }*/
 
-        2020-01-01 00:00
-        2020-01-02 00:00
-        2020-01-01 20:00
-        2020-01-02 15:00
         public double CalculateStayDuration(DateTime arrivalTime, DateTime departureTime)
         {
             TimeSpan timeSpan = departureTime - arrivalTime;
