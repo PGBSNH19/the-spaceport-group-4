@@ -54,7 +54,7 @@ namespace SpacePort
             ShipTypes[shipType] += 1;
         }
 
-        public int CalculateParkingTariff(string shipType)
+        public int CalculateParkingTariff(double shipLength)
         {
 
 
@@ -62,13 +62,6 @@ namespace SpacePort
             //tmp value
             return 10;
         }
-
-
-        /*public int ParkedTimeInMinutes()
-        {
-            var parked = TimeOfDepature - TimeOfArrival;
-            return (int)parked.TotalMinutes;
-        }*/
 
         public List<string> GenerateReceipt(DateTime startTime, DateTime dateTime, string shipType)
         {

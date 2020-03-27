@@ -103,6 +103,16 @@ namespace SpacePort
             Console.ReadLine();
         }
 
+        public static void Pay()
+        {
+
+        }
+
+        public static void ParkingConfirmation()
+        {
+
+        }
+
         public static void CustomerSignIn()
         {
 
