@@ -7,44 +7,23 @@ namespace SpacePort
 {
     public class Spaceport
     {
-        StarWarsApi api = new StarWarsApi();
+        //instance of DataContext class
+        DataContext Context = new DataContext();
 
-        public Dictionary<string, int> ShipTypes;
-        private Dictionary<string, int> parkingCapacity;
-        public void GetParkingLots()
-        {
-            //this.ShipTypes = api.GetShipDataAsync().Result;
-        }
-
-        public void GenerateLotAmount()
-        {
-            Random randomAmount = new Random();
-
-            List<string> keys = new List<string>(ShipTypes.Keys);
-            for (int i = 0; i < keys.Count; i++)
-            {
-                int amount = randomAmount.Next(0, 10);
-                string key = keys[i];
-                this.ShipTypes[key] = amount;
-            }
-
-            parkingCapacity = ShipTypes;
-        }
-
-        public bool CheckParkingAvalibility(string shipType)
+        /*public bool CheckParkingAvalibility(string shipType)
         {
             int value = ShipTypes[shipType];
             return value > 0;
-        }
+        }*/
 
-        public bool CheckMaxLots(string shipType)
+        /*public bool CheckMaxLots(string shipType)
         {
             int value = ShipTypes[shipType];
             int maxValue = parkingCapacity[shipType];
             return value <= maxValue;
-        }
+        }*/
 
-        public void Park(string shipType)
+        /*public void Park(string shipType)
         {
             ShipTypes[shipType] -= 1;
         }
@@ -52,34 +31,41 @@ namespace SpacePort
         public void Leave(string shipType)
         {
             ShipTypes[shipType] += 1;
-        }
+        }*/
 
-        public int CalculateParkingTariff(double shipLength)
+        public double CalculateStayDuration(DateTime arrivalTime, DateTime departureTime)
         {
+            TimeSpan timeSpan = departureTime - arrivalTime;
+            double totalHours = timeSpan.TotalHours;
 
-
-
-            //tmp value
-            return 10;
+            return totalHours;
         }
 
-        public List<string> GenerateReceipt(DateTime startTime, DateTime dateTime, string shipType)
+        public int CalculateParkingTariff(double shipLength, double duration)
         {
-            List<string> receiptTmp = new List<string>();
+            int totalCost = 0;
+            totalCost = (int)Math.Ceiling(shipLength * 0.2 * duration);
 
-            //int cost = CalculateParkingTariff(shipType);
-
-
-
-            return receiptTmp;
-
-
+            return totalCost;
         }
 
+        public int CreateParkingLotAmount(double shipLength)
+        {
+            int lotAmount = 0;
+            if (shipLength >= 1 || shipLength <= 499)
+                lotAmount = 50;
+            else if (shipLength >= 500 || shipLength <= 999)
+                lotAmount = 30;
+            else if (shipLength >= 1000 || shipLength <= 3499)
+                lotAmount = 15;
+            else if (shipLength >= 3500 || shipLength <= 4999)
+                lotAmount = 4;
+            else if (shipLength >= 5000 || shipLength <= 9999)
+                lotAmount = 2;
 
-        //instance of DataContext class
-        DataContext Context = new DataContext();
-
+            return lotAmount;
+        }
+             
         //Inserting Data to Database
         public void InsertDataToTciketDB(string name, string shipN, DateTime arrTime, DateTime dpTime, int price)
         {
