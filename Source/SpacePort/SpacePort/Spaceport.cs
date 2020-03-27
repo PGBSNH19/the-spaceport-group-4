@@ -9,7 +9,17 @@ namespace SpacePort
     {
         //instance of DataContext class
         DataContext Context = new DataContext();
+        Dictionary<string, int> parkingLots = new Dictionary<string, int>()
+        {
+            ["Micro"] = 50,
+            ["Small"] = 30,
+            ["Medium"] = 15,
+            ["Large"] = 6,
+            ["Largest"] = 6,
+            ["Mega"] = 2
+        };
 
+        
         /*public bool CheckParkingAvalibility(string shipType)
         {
             int value = ShipTypes[shipType];
@@ -39,31 +49,42 @@ namespace SpacePort
             double totalHours = timeSpan.TotalHours;
 
             return totalHours;
+
+            
         }
 
-        public int CalculateParkingTariff(double shipLength, double duration)
+        //public int CalculateParkingTariff(double shipLength, double duration)
+        //{
+        //    int lotCost = CreateParkingLotAmount();
+        //    int totalCost = 0;
+        //    totalCost = (int)Math.Ceiling(lotCost * duration);
+
+        //    return totalCost;
+        //}
+
+        public int CalculateParkingAvailability(double shipLength)
         {
-            int totalCost = 0;
-            totalCost = (int)Math.Ceiling(shipLength * 0.2 * duration);
+            int lotsAvailable = 0;
 
-            return totalCost;
-        }
+            if (shipLength >= 1 && shipLength <= 499)
+                lotsAvailable = parkingLots["Micro"];
 
-        public int CreateParkingLotAmount(double shipLength)
-        {
-            int lotAmount = 0;
-            if (shipLength >= 1 || shipLength <= 499)
-                lotAmount = 50;
-            else if (shipLength >= 500 || shipLength <= 999)
-                lotAmount = 30;
-            else if (shipLength >= 1000 || shipLength <= 3499)
-                lotAmount = 15;
-            else if (shipLength >= 3500 || shipLength <= 4999)
-                lotAmount = 4;
-            else if (shipLength >= 5000 || shipLength <= 9999)
-                lotAmount = 2;
+            else if (shipLength >= 500 && shipLength <= 999)
+                lotsAvailable = parkingLots["Small"];
 
-            return lotAmount;
+            else if (shipLength >= 1000 && shipLength <= 3499)
+                lotsAvailable = parkingLots["Medium"];
+
+            else if (shipLength >= 3500 && shipLength <= 4999)
+                lotsAvailable = parkingLots["Large"];
+
+            else if (shipLength >= 5000 && shipLength <= 9999)
+                lotsAvailable = parkingLots["Largest"];
+
+            else if (shipLength > 10000)
+                lotsAvailable = parkingLots["Mega"];
+
+            return lotsAvailable;
         }
              
         //Inserting Data to Database

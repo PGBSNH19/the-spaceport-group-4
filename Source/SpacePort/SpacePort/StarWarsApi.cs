@@ -160,6 +160,7 @@ namespace SpacePort
 
         public List<string> FetchTravelerShipURI(JObject jObject)
         {
+            
             List<string> shipURI = new List<string>();
 
             foreach (var uri in jObject.SelectToken("results[0].starships"))

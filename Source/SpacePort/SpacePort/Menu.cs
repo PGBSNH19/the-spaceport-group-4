@@ -11,10 +11,10 @@ namespace SpacePort
 
         static JObject jObject = new JObject();
 
-        static DateTime startTime = new DateTime();
-        static DateTime endTime = new DateTime();
+        static DateTime arrivalTime = new DateTime();
+        static DateTime departureTime = new DateTime();
 
-        public static string CustomerName { get; private set; }
+        public static string TravelerName { get; private set; }
         public static int MenuChoice { get; private set; }
 
         public static void Display()
@@ -31,12 +31,12 @@ namespace SpacePort
             if (MenuChoice == 1)
             {
                 Console.Write("Please *BEEP* *BOOP* enter your name: ");
-                CustomerSignIn();
+                TravelerSignIn();
 
                 bool valid = false;
                 while (valid == false)
                 {
-                    valid = ValidateCustomer();
+                    valid = ValidateTraveler();
 
                     if(valid == true)
                     {
@@ -48,20 +48,21 @@ namespace SpacePort
                     {
                         Console.WriteLine("*BEEP* So certain were you. Go back and closer you must look. *BOOP*");
                         Console.Write("Try again: ");
-                        CustomerSignIn();
+                        TravelerSignIn();
                     }
 
                 }
 
                 Console.Write("Please enter your time of arrival (YYYY/MM/DD HH:MM): ");
                 string arrivalInput = Console.ReadLine();
-                InputDate(arrivalInput, startTime);
+                InputDate(arrivalInput, arrivalTime);
                 Console.Write("Please enter your time of depature (YYYY/MM/DD HH:MM): ");
                 string depatureInput = Console.ReadLine();
-                InputDate(depatureInput, endTime);
-               // Console.Clear();
-
-                DisplayCustomerShips();
+                InputDate(depatureInput, departureTime);
+                // Console.Clear();
+                Dictionary<string,double> ships = GetShips();
+                List<string> keys = DisplayTravelerShips(ships);
+                ChooseShip(ships, keys);
             }
             else if (MenuChoice == 2)
             {
@@ -79,28 +80,62 @@ namespace SpacePort
             //spaceport.GetDate(dateTime);
         }
 
-        private static bool ValidateCustomer()
+        private static bool ValidateTraveler()
         {
-            jObject = swAPI.GetTravelerDataAsync(CustomerName).Result;
-            bool isValid = swAPI.ValidateTraveler(jObject, CustomerName);
+            jObject = swAPI.GetTravelerDataAsync(TravelerName).Result;
+            bool isValid = swAPI.ValidateTraveler(jObject, TravelerName);
             return isValid;
         }
 
-        public static void DisplayCustomerShips()
+        public static Dictionary<string, double> GetShips()
         {
             List<string> shipURI = swAPI.FetchTravelerShipURI(jObject);
             Dictionary<string, double> ships = swAPI.GetShipDataAsync(shipURI).Result;
 
-            Console.WriteLine("Avaliable ships: ");
-            int lot = 5;
-            foreach(var item in ships)
+            return ships;
+        }
+
+        public static List<string> DisplayTravelerShips(Dictionary<string, double> ships)
+        {
+            //List<string> shipURI = swAPI.FetchTravelerShipURI(jObject);
+            //Dictionary<string, double> ships = swAPI.GetShipDataAsync(shipURI).Result;
+            List<string> keys = new List<string>(ships.Keys);
+
+            Console.WriteLine("Avaliable ships: \n\r");
+
+            //foreach(var item in ships)
+            //{
+            //    int lot = spacePort.CalculateParkingAvailability(item.Value);
+            //    Console.WriteLine($"[{index}.\t{item.Key}\t\t\tAvaliable lots: {lot}]");
+
+            //}
+            int index = 1;
+            foreach (string key in keys)
             {
-                Console.WriteLine($"[1.\t{item.Key}\tAvaliable lots: {lot}]");
-                lot += 3;
+                int lot = spacePort.CalculateParkingAvailability(ships[key]);
+                Console.WriteLine($"[{index}.\t{key}\t\t\tAvaliable lots: {lot}]");
+                index++;
             }
 
+           
+
+            return keys;
+        }
+
+        public static void ChooseShip(Dictionary<string,double> ships, List<string> keys)
+        {
             Console.Write("Plese select ship to Check In: ");
-            Console.ReadLine();
+            int ship = int.Parse(Console.ReadLine());
+            string shipName = "";
+            for (int i = 0; i <= ships.Count; i++)
+            {
+                if (ship == i)
+                    shipName = keys[i - 1];
+            }
+            Console.WriteLine(shipName);
+
+            //Dictionary<string, double> selectedShip = new Dictionary<string, double>();
+            //selectedShip.Add(shipName, ships[shipName]);
         }
 
         public static void Pay()
@@ -113,10 +148,10 @@ namespace SpacePort
 
         }
 
-        public static void CustomerSignIn()
+        public static void TravelerSignIn()
         {
 
-            CustomerName = Console.ReadLine();
+            TravelerName = Console.ReadLine();
         }
     }
 }

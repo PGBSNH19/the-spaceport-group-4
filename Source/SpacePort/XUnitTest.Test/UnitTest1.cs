@@ -16,7 +16,7 @@ namespace XUnitTest.Test
             //Arrange
             Spaceport spaceport = new Spaceport();
 
-            Dictionary<string, int> shipTypes = spaceport.ShipTypes;
+            //Dictionary<string, int> shipTypes = spaceport.ShipTypes;
 
             //Act
             //Assert
@@ -29,10 +29,10 @@ namespace XUnitTest.Test
             //Arrange
            // Menu m;
 
-            string SignIn = Menu.CustomerName;
-            Menu.DisplayMenu();
+            string SignIn = Menu.TravelerName;
+            Menu.Display();
             Menu.DisplayCustomerShips();
-            Menu.CustomerSignIn();
+            Menu.TravelerSignIn();
 
         }
 
