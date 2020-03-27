@@ -59,10 +59,10 @@ namespace SpacePort
                 Console.Write("Please enter your time of depature (YYYY/MM/DD HH:MM): ");
                 string depatureInput = Console.ReadLine();
                 InputDate(depatureInput, departureTime);
-                // Console.Clear();
+
                 Dictionary<string,double> ships = GetShips();
                 List<string> keys = DisplayTravelerShips(ships);
-                ChooseShip(ships, keys);
+                ParkShip(ships, keys);
             }
             else if (MenuChoice == 2)
             {
@@ -122,7 +122,7 @@ namespace SpacePort
             return keys;
         }
 
-        public static void ChooseShip(Dictionary<string,double> ships, List<string> keys)
+        public static void ParkShip(Dictionary<string,double> ships, List<string> keys)
         {
             Console.Write("Plese select ship to Check In: ");
             int ship = int.Parse(Console.ReadLine());
