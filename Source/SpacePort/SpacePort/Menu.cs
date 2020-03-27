@@ -11,8 +11,10 @@ namespace SpacePort
 
         static JObject jObject = new JObject();
 
-        static DateTime arrivalTime = new DateTime();
-        static DateTime departureTime = new DateTime();
+        static DateTime arrivalTime;
+        static DateTime departureTime;
+        static int totalCost;
+        static string shipName;
 
         public static string TravelerName { get; private set; }
         public static int MenuChoice { get; private set; }
@@ -55,14 +57,35 @@ namespace SpacePort
 
                 Console.Write("Please enter your time of arrival (YYYY/MM/DD HH:MM): ");
                 string arrivalInput = Console.ReadLine();
-                InputDate(arrivalInput, arrivalTime);
+                arrivalTime = InputDate(arrivalInput);
                 Console.Write("Please enter your time of depature (YYYY/MM/DD HH:MM): ");
                 string depatureInput = Console.ReadLine();
-                InputDate(depatureInput, departureTime);
+                departureTime = InputDate(depatureInput);
+
+                
 
                 Dictionary<string,double> ships = GetShips();
                 List<string> keys = DisplayTravelerShips(ships);
+                
+
                 ParkShip(ships, keys);
+                //Pay
+                Console.WriteLine($"Please pay {totalCost} credits to park your ship");
+                Console.Write("YES / NO :");
+                string park = Console.ReadLine();
+
+                if(park == "YES")
+                {
+                    ParkingConfirmation();
+                    //clear console, go back to menu
+                }
+                else
+                {
+                    //go back to menu
+                }
+
+                
+
             }
             else if (MenuChoice == 2)
             {
@@ -74,10 +97,12 @@ namespace SpacePort
 
         }
 
-        private static void InputDate(string input, DateTime dateTime)
+        private static DateTime InputDate(string input)
         {
-            dateTime = DateTime.Parse(input);
+            DateTime dateTime = DateTime.Parse(input);
             //spaceport.GetDate(dateTime);
+
+            return dateTime;
         }
 
         private static bool ValidateTraveler()
@@ -97,28 +122,21 @@ namespace SpacePort
 
         public static List<string> DisplayTravelerShips(Dictionary<string, double> ships)
         {
-            //List<string> shipURI = swAPI.FetchTravelerShipURI(jObject);
-            //Dictionary<string, double> ships = swAPI.GetShipDataAsync(shipURI).Result;
+
             List<string> keys = new List<string>(ships.Keys);
+            double duration = spacePort.CalculateStayDuration(arrivalTime, departureTime);
 
             Console.WriteLine("Avaliable ships: \n\r");
 
-            //foreach(var item in ships)
-            //{
-            //    int lot = spacePort.CalculateParkingAvailability(item.Value);
-            //    Console.WriteLine($"[{index}.\t{item.Key}\t\t\tAvaliable lots: {lot}]");
-
-            //}
             int index = 1;
             foreach (string key in keys)
             {
                 int lot = spacePort.CalculateParkingAvailability(ships[key]);
-                Console.WriteLine($"[{index}.\t{key}\t\t\tAvaliable lots: {lot}]");
+                int totalCost = spacePort.CalculateParkingTariff(ships[key], duration);
+                Console.WriteLine($"[{index}.\t{key}\t\t\tAvaliable lots: {lot}\tTotal Cost: {totalCost}]");
                 index++;
             }
-
-           
-
+          
             return keys;
         }
 
@@ -134,8 +152,7 @@ namespace SpacePort
             }
             Console.WriteLine(shipName);
 
-            //Dictionary<string, double> selectedShip = new Dictionary<string, double>();
-            //selectedShip.Add(shipName, ships[shipName]);
+            
         }
 
         public static void Pay()
