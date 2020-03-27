@@ -105,7 +105,7 @@ namespace SpacePort
             return lotsAvailable;
         }
 
-        public void ParkShip(double shipLength)
+        public void Docking(double shipLength)
         {
             if (shipLength >= 1 && shipLength <= 499)
                 parkingLots["Micro"] -=1;
@@ -124,6 +124,27 @@ namespace SpacePort
 
             else if (shipLength > 10000)
                 parkingLots["Mega"] -=1;
+        }
+
+        public void Undocking(double shipLength)
+        {
+            if (shipLength >= 1 && shipLength <= 499)
+                parkingLots["Micro"] += 1;
+
+            else if (shipLength >= 500 && shipLength <= 999)
+                parkingLots["Small"] += 1;
+
+            else if (shipLength >= 1000 && shipLength <= 3499)
+                parkingLots["Medium"] += 1;
+
+            else if (shipLength >= 3500 && shipLength <= 4999)
+                parkingLots["Large"] += 1;
+
+            else if (shipLength >= 5000 && shipLength <= 9999)
+                parkingLots["Largest"] += 1;
+
+            else if (shipLength > 10000)
+                parkingLots["Mega"] += 1;
         }
 
         //Inserting Data to Database

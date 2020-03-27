@@ -75,6 +75,7 @@ namespace SpacePort
                 {
 
                     ParkingConfirmation();
+                    spacePort.Docking(ships[shipName]);
                     //clear console, go back to menu
                 }
                 else
@@ -91,7 +92,9 @@ namespace SpacePort
                 Console.WriteLine("I find your lack of faith disturbing.");
                 Console.Write("To check out, please enter your name: ");
                 string name = Console.ReadLine();
+                //Undocking(ships)
                 spacePort.DisplayReceipt(name);
+                
             }
 
             //Checkin confirmation text: "The garbage’ll do!” 
