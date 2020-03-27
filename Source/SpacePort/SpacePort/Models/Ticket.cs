@@ -8,7 +8,8 @@ namespace SpacePort.Models
 {
     public class Ticket
     {
-        public int ID { get; set; }
+        [Key]
+        public int TicketID { get; set; }
         [StringLength(25, ErrorMessage = "Text length should be shorter than 15 Characters")]
         [Required]
         public string PersonName { get; set; }

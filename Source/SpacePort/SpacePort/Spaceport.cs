@@ -104,7 +104,7 @@ namespace SpacePort
 
                 Receipt receipt = new Receipt
                 {
-                    TicketID = ticket.ID,
+                    TicketID = ticket.TicketID,
                     TotalPrice = price
                 };
                 Context.Receipt.Add(receipt);
@@ -124,16 +124,16 @@ namespace SpacePort
             {
                 checkName = (from p in Context.Ticket
                              where p.PersonName == name
-                             orderby p.ID descending
+                             orderby p.TicketID descending
                              select p).FirstOrDefault();
 
                 if (checkName.PersonName == name)
                 {
                     var data = (from ticket in Context.Ticket
                                 join receipt in Context.Receipt
-                                on ticket.ID equals receipt.TicketID
+                                on ticket.TicketID equals receipt.TicketID
                                 where (ticket.PersonName == name)
-                                orderby ticket.ID descending
+                                orderby ticket.TicketID descending
                                 select new
                                 {
                                     receipt.TicketID,
@@ -168,7 +168,7 @@ namespace SpacePort
                 DisplayReceipt(name);
                 if (checkName.PersonName == name)
                 {
-                    Context.Ticket.Remove(Context.Ticket.Where(n => n.PersonName == name).OrderByDescending(p => p.ID).FirstOrDefault());
+                    Context.Ticket.Remove(Context.Ticket.Where(n => n.PersonName == name).OrderByDescending(p => p.TicketID).FirstOrDefault());
                     Context.SaveChanges();
                 }
             }
