@@ -116,26 +116,52 @@ namespace XUnitTest.Test
             Assert.True(isTraveler);
         }
 
+        //[Fact]
+        //public void FetchTravelerShipURI_FromRecievedJObject_FetchCorrectShipURI()
+        //{
+
+        //    string name = "Luke SKYWalKeR";
+        //    List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };            
+            
+        //    StarWarsApi api = new StarWarsApi();
+        //    JObject jObject = api.GetTravelerDataAsync(name.ToLower()).Result;
+        //    List<string> actualURIs = api.FetchTravelerShipURI(jObject);
+        //    //bool isTraveler = api.ValidateTraveler(jObject, name.ToLower());
+
+        //    //if (isTraveler == true)
+        //    //{
+        //    //    actualURIs = api.FetchTravelerShipURI(jObject);
+
+        //    //}
+
+        //    Assert.Equal(expectedURIs, actualURIs);
+        //}
+
         [Fact]
         public void FetchTravelerShipURI_FromRecievedJObject_FetchCorrectShipURI()
         {
+            List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };
+            JObject testObject = JObject.Parse(@"{
+            'count': 1, 
+            'next': null, 
+            'previous': null, 
+            'results': [
+                {
+                    'name': 'Luke Skywalker',                 
+                    'starships': [
+                        'https://swapi.co/api/starships/12/',
+                        'https://swapi.co/api/starships/22/'
+                        ]
+                    }
+                ]
+            }");
 
-            string name = "Luke SKYWalKeR";
-            List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };            
-            
             StarWarsApi api = new StarWarsApi();
-            JObject jObject = api.GetTravelerDataAsync(name.ToLower()).Result;
-            List<string> actualURIs = api.FetchTravelerShipURI(jObject);
-            //bool isTraveler = api.ValidateTraveler(jObject, name.ToLower());
-
-            //if (isTraveler == true)
-            //{
-            //    actualURIs = api.FetchTravelerShipURI(jObject);
-
-            //}
+            List<string> actualURIs = api.FetchTravelerShipURI(testObject);
 
             Assert.Equal(expectedURIs, actualURIs);
         }
+
 
         [Fact]
         public void GetShipDataAsync_InsertListOfURI_ReturnShipValues()
