@@ -31,7 +31,7 @@ namespace XUnitTest.Test
 
             string SignIn = Menu.CustomerName;
             Menu.DisplayMenu();
-            Menu.DisplayShipTypes();
+            Menu.DisplayCustomerShips();
             Menu.CustomerSignIn();
 
         }

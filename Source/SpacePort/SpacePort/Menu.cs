@@ -11,8 +11,9 @@ namespace SpacePort
 
         static JObject jObject = new JObject();
 
-        static DateTime startTime;
-        static DateTime endTime;
+        static DateTime startTime = new DateTime();
+        static DateTime endTime = new DateTime();
+
         public static string CustomerName { get; private set; }
         public static int MenuChoice { get; private set; }
 
@@ -35,30 +36,37 @@ namespace SpacePort
                 bool valid = false;
                 while (valid == false)
                 {
-                    Console.WriteLine("*BEEP* Do.Or do not.There is no try. *BOOP*");
-                    Console.Write("Try again: ");
-                    CustomerSignIn();
                     valid = ValidateCustomer();
 
                     if(valid == true)
                     {
+                        Console.Clear();
+                        Console.WriteLine("=CONFIRMATION CONFIRMED= *BEEP* Well met, servant.");
                         break;
                     }
+                    else
+                    {
+                        Console.WriteLine("*BEEP* So certain were you. Go back and closer you must look. *BOOP*");
+                        Console.Write("Try again: ");
+                        CustomerSignIn();
+                    }
+
                 }
 
-                Console.WriteLine("Please enter your time of arrival (YYYY/MM/DD HH:MM): ");
+                Console.Write("Please enter your time of arrival (YYYY/MM/DD HH:MM): ");
                 string arrivalInput = Console.ReadLine();
                 InputDate(arrivalInput, startTime);
-                Console.WriteLine("Please enter your time of depature (YYYY/MM/DD HH:MM): ");
+                Console.Write("Please enter your time of depature (YYYY/MM/DD HH:MM): ");
                 string depatureInput = Console.ReadLine();
                 InputDate(depatureInput, endTime);
+               // Console.Clear();
+
+                DisplayCustomerShips();
             }
             else if (MenuChoice == 2)
             {
                 //Checkout method called, and check in database if user is checked in
             }
-
-            //if starwarsperson not found: Retry and text: “Do. Or do not. There is no try.”
 
             //Checkin confirmation text: "The garbage’ll do!” 
             ///checkout text: "I find your lack of faith disturbing".
@@ -67,8 +75,8 @@ namespace SpacePort
 
         private static void InputDate(string input, DateTime dateTime)
         {
-            dateTime = DateTime.Parse(input)
-            spaceport.GetDate(dateTime);
+            dateTime = DateTime.Parse(input);
+            //spaceport.GetDate(dateTime);
         }
 
         private static bool ValidateCustomer()
@@ -78,10 +86,21 @@ namespace SpacePort
             return isValid;
         }
 
-        public static void DisplayShipTypes()
+        public static void DisplayCustomerShips()
         {
-            spacePort.GetParkingLots();
-            spacePort.GenerateLotAmount();
+            List<string> shipURI = swAPI.FetchTravelerShipURI(jObject);
+            Dictionary<string, double> ships = swAPI.GetShipDataAsync(shipURI).Result;
+
+            Console.WriteLine("Avaliable ships: ");
+            int lot = 5;
+            foreach(var item in ships)
+            {
+                Console.WriteLine($"[1.\t{item.Key}\tAvaliable lots: {lot}]");
+                lot += 3;
+            }
+
+            Console.Write("Plese select ship to Check In: ");
+            Console.ReadLine();
         }
 
         public static void CustomerSignIn()
