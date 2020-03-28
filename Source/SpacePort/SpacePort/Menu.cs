@@ -22,16 +22,8 @@ namespace SpacePort
 
         public static void Display()
         {
-            while(Console.ReadKey().Key != ConsoleKey.Escape)
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
             {
-                //Console.WriteLine("Hello, my friend. Stay awhile and listen");
-                //Console.WriteLine("I am A.S.P.P.A:  *BEEP* *BEEP*  Your Automated SpacePort Parking Assistent \n\r");
-
-                //Console.WriteLine("[1\tCheck In\t]");
-                //Console.WriteLine("[2\tCheck Out\t]");
-
-                //Console.Write("\n\rPlease Make a choice: ");
-                //MenuChoice = int.Parse(Console.ReadLine());
                 while (MenuChoice == 0)
                 {
                     DisplayMain();
@@ -41,7 +33,7 @@ namespace SpacePort
 
                 if (MenuChoice == 1)
                 {
-                    Console.Write("Please *BEEP* *BOOP* enter your name: ");
+                    Console.Write("Please enter your name: ");
                     TravelerSignIn();
 
                     bool valid = false;
@@ -50,14 +42,18 @@ namespace SpacePort
                         valid = ValidateTraveler();
 
                         if(valid == true)
-                        {
+                        {                            
                             Console.Clear();
-                            Console.WriteLine("=CONFIRMATION CONFIRMED= *BEEP* Well met, servant.");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("=CONFIRMATION CONFIRMED= *BEEP*\n\rWell met, servant.\n\r");
+                            Console.ResetColor();
                             break;
                         }
                         else
-                        {
-                            Console.WriteLine("*BEEP* So certain were you. Go back and closer you must look. *BOOP*");
+                        {                           
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n\r*BEEP* So certain were you. Go back and closer you must look. *BOOP*");
+                            Console.ResetColor();
                             Console.Write("Try again: ");
                             TravelerSignIn();
                         }
@@ -70,6 +66,7 @@ namespace SpacePort
                     Console.Write("Please enter your date and time of depature (YYYY/MM/DD HH:MM): ");
                     string depatureInput = Console.ReadLine();
                     departureTime = InputDate(depatureInput);
+                    Console.Clear();
 
                     Dictionary<string, double> ships = GetShips();
                     List<string> keys = DisplayTravelerShips(ships);
@@ -83,7 +80,7 @@ namespace SpacePort
                     {
                         ParkingConfirmation();
                         spacePort.Dock(ships[shipName]);
-                        Console.WriteLine("* BEEP* Please press any key to return to main menu");
+                        Console.WriteLine("Please press any key to return to main menu");;
                         Console.ReadKey();
                         Console.Clear();
                         MenuChoice = 0;
@@ -93,21 +90,25 @@ namespace SpacePort
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("You’re fulfilling your destiny, Traveler. Become my apprentice. Learn to use the Dark Side of the Force.");
                         Console.ResetColor();
-                        Console.WriteLine("* BEEP* Please press any key to return to main menu");
+                        Console.WriteLine("Please press any key to return to main menu");
                         Console.ReadKey();
                         MenuChoice = 0;
                     }                
                 }
                 else if (MenuChoice == 2)
                 {
-                    //Checkout method called, and check in database if user is checked in
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\n\rI find your lack of faith disturbing.\n\r");
+                    Console.ResetColor();
+
                     Console.Write("To check out, please enter your name: ");
                     string name = Console.ReadLine();
+
                     Dictionary<string, double> ships = GetShips();
                     spacePort.Undock(ships[shipName]);
                     spacePort.DisplayReceipt(name);
-                    Console.WriteLine("\n\r* BEEP* Please press any key to return to main menu");
+
+                    Console.WriteLine("\n\rPlease press any key to return to main menu");
                     Console.Clear();
                     Console.ReadKey();
                     
@@ -118,19 +119,17 @@ namespace SpacePort
 
         private static void DisplayMain()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Hello, my friend. Stay awhile and listen");
             Console.WriteLine("I am A.S.P.P.A:  *BEEP* *BEEP*  Your Automated SpacePort Parking Assistent \n\r");
+            Console.ResetColor();
 
             Console.WriteLine("[1\tCheck In\t]");
             Console.WriteLine("[2\tCheck Out\t]");
-
-            //Console.Write("\n\rPlease Make a choice: ");
-            //MenuChoice = int.Parse(Console.ReadLine());
         }
         private static DateTime InputDate(string input)
         {
             DateTime dateTime = DateTime.Parse(input);
-            //spaceport.GetDate(dateTime);
 
             return dateTime;
         }
@@ -163,7 +162,7 @@ namespace SpacePort
             {
                 int lot = spacePort.CalculateParkingAvailability(ships[key]);
                 totalCost = spacePort.CalculateParkingTariff(ships[key], duration);
-                Console.WriteLine($"[{index}.\t{key}\t\t\tAvaliable lots: {lot}\tTotal Cost: {totalCost}]");
+                Console.WriteLine($"[{index}.\t{key,-30}Avaliable lots: {lot,-10}Total Cost: {totalCost}C]");
                 index++;
             }
           
@@ -172,15 +171,18 @@ namespace SpacePort
 
         public static void ParkShip(Dictionary<string,double> ships, List<string> keys)
         {
-            Console.Write("Plese select ship to Check In: ");
+            Console.Write("\n\rPlese select ship to Check In: ");
             int ship = int.Parse(Console.ReadLine());
-            //string shipName = "";
+
             for (int i = 0; i <= ships.Count; i++)
             {
                 if (ship == i)
                     shipName = keys[i - 1];
             }
-            Console.WriteLine("The garbage’ll do!");        
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\n\rThe garbage’ll do!");
+            Console.ResetColor();
         }
 
         public static void Pay()
@@ -190,14 +192,16 @@ namespace SpacePort
 
         public static void ParkingConfirmation()
         {
-            Console.WriteLine("Thank you for choosing to stay at a Far Far Away Starport");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Thank you for choosing to stay at a Far Far Away Starport\n\r");
+            Console.ResetColor();
 
             spacePort.InsertDataToTciketDB(travelerName, shipName, arrivalTime, departureTime, totalCost);
         }
 
         public static void TravelerSignIn()
         {
-
             travelerName = Console.ReadLine();
         }
     }
