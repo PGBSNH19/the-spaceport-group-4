@@ -105,7 +105,7 @@ namespace SpacePort
             return lotsAvailable;
         }
 
-        public void Docking(double shipLength)
+        public void Dock(double shipLength)
         {
             if (shipLength >= 1 && shipLength <= 499)
                 parkingLots["Micro"] -=1;
@@ -126,7 +126,7 @@ namespace SpacePort
                 parkingLots["Mega"] -=1;
         }
 
-        public void Undocking(double shipLength)
+        public void Undock(double shipLength)
         {
             if (shipLength >= 1 && shipLength <= 499)
                 parkingLots["Micro"] += 1;
