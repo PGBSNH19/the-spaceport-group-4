@@ -178,6 +178,8 @@ namespace SpacePort
             }
         }
         private Ticket checkName;
+
+        //Display Data from Database
         public void DisplayReceipt(string name)
         {
             try
@@ -220,6 +222,7 @@ namespace SpacePort
             }
         }
 
+        //Remove Data from Database
         public void RemovePerson(string name)
         {
             try
