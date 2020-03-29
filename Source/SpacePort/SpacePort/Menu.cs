@@ -27,6 +27,7 @@ namespace SpacePort
 
             while (Console.ReadKey().Key != ConsoleKey.Escape)
             {
+                
                 while (MenuChoice == 0)
                 {
                     DisplayMain();
@@ -139,6 +140,7 @@ namespace SpacePort
                     
                     
                     MenuChoice = 0;
+                    Console.WriteLine("Please press Enter to start the program");
                 }
             }
         }
