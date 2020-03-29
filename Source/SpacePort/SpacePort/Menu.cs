@@ -17,6 +17,7 @@ namespace SpacePort
         static DateTime departureTime;
         static int totalCost = 0;
         static double duration;
+        static bool notValidTime;
 
         public static int MenuChoice { get; private set; }
 
@@ -60,13 +61,27 @@ namespace SpacePort
 
                     }
 
-                    Console.Write("Please enter your date and time of arrival (YYYY-MM-DD HH:MM): ");
-                    string arrivalInput = Console.ReadLine();
-                    arrivalTime = InputDate(arrivalInput);
-                    Console.Write("Please enter your date and time of depature (YYYY/MM/DD HH:MM): ");
-                    string depatureInput = Console.ReadLine();
-                    departureTime = InputDate(depatureInput);
-                    Console.Clear();
+                    do
+                    {
+                        Console.Write("Please enter your date and time of arrival (YYYY-MM-DD HH:MM): ");
+                        string arrivalInput = Console.ReadLine();
+                        arrivalTime = InputDate(arrivalInput);
+                        Console.Write("Please enter your date and time of depature (YYYY-MM-DD HH:MM): ");
+                        string depatureInput = Console.ReadLine();
+                        departureTime = InputDate(depatureInput);
+                        Console.Clear();
+                        
+                        if (arrivalTime > departureTime)
+                        {
+                            Console.WriteLine("Error no time traveling allowed!");
+                            notValidTime = true;
+                        }
+                        else
+                        {
+                            notValidTime = false;
+                        }
+
+                    } while (notValidTime);
 
                     Dictionary<string, double> ships = GetShips();
                     List<string> keys = DisplayTravelerShips(ships);
