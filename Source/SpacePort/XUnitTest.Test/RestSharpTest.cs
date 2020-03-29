@@ -72,22 +72,20 @@ namespace XUnitTest.Test
             Assert.Equal(expectedURIs, actualURIs);
         }
 
-        //[Fact]
-        //public void FetchTravelerShipURI_FromRecievedJObjectToNoresult_FetchCorrectShipURI2()
-        //{
-        //    List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };
-        //    JObject testObject = JObject.Parse(@"{
-        //    'count': 1, 
-        //    'next': null, 
-        //    'previous': null, 
-        //    'results': null}");
+        [Fact]
+        public void FetchTravelerShipURI_FromRecievedJObjectToNoresult_FetchCorrectShipURI2()
+        {
+            List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };
+            JObject testObject = JObject.Parse(@"{
+            'count': 1, 
+            'next': null, 
+            'previous': null, 
+            'results': null}");
 
-        //    StarWarsApi api = new StarWarsApi();
-        //    List<string> actualURIs = api.FetchTravelerShipURI(testObject);
+            StarWarsApi api = new StarWarsApi();
+            List<string> actualURIs = api.FetchTravelerShipURI(testObject);
 
-        //    Assert.Equal(expectedURIs, actualURIs);
-        //}
-
-
+            Assert.Equal(expectedURIs, actualURIs);
+        }
     }
 }   

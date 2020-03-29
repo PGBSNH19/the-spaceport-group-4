@@ -16,8 +16,6 @@ namespace XUnitTest.Test
             //Arrange
             Spaceport spaceport = new Spaceport();
 
-            //Dictionary<string, int> shipTypes = spaceport.ShipTypes;
-
             //Act
             //Assert
             Assert.NotNull(spaceport);
@@ -26,25 +24,9 @@ namespace XUnitTest.Test
         [Fact]
         public void CreateMenu()
         {
-            //Arrange
-           // Menu m;
-
-            //string SignIn = Menu.travelerName;
             Menu.Display();
-            //Menu.DisplayCustomerShips();
+
             Menu.TravelerSignIn();
-
-        }
-
-        [Fact]
-        public void CreateValidate()
-        {
-            //Arrage
-           // ValidateCustomer v = new ValidateCustomer();
-           // string name = v.Name;
-            //Act
-            //Assert
-            //Assert.NotNull(v);
         }
 
         [Fact]
@@ -75,21 +57,5 @@ namespace XUnitTest.Test
             //Assert
             Assert.NotNull(receipt);
         }
-
-        [Fact]
-        public void CreatePeopleAPIResponse()
-        {
-            //Arrange
-            Traveler people = new Traveler();
-
-            string name = people.Name;
-
-            //Act
-            //Assert
-            Assert.NotNull(people);
-
-
-        }
-
     }
 }
