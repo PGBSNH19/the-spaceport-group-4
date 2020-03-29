@@ -23,6 +23,8 @@ namespace SpacePort
 
         public static void Display()
         {
+            Console.WriteLine("Please press Enter to start the program");
+
             while (Console.ReadKey().Key != ConsoleKey.Escape)
             {
                 while (MenuChoice == 0)
@@ -119,9 +121,17 @@ namespace SpacePort
                     Console.Write("To check out, please enter your name: ");
                     string name = Console.ReadLine();
 
-                    Dictionary<string, double> ships = GetShips();
-                    spacePort.Undock(ships[shipName]);
-                    spacePort.DisplayReceipt(name);
+                    try
+                    {
+                        Dictionary<string, double> ships = GetShips();
+                        spacePort.Undock(ships[shipName]);
+                        spacePort.DisplayReceipt(name);
+                    }
+                    catch (NullReferenceException)
+                    {
+                        Console.WriteLine("Please Check in before Check out");
+                    }
+
 
                     Console.WriteLine("\n\rPlease press any key to return to main menu");
                     Console.ReadKey();
