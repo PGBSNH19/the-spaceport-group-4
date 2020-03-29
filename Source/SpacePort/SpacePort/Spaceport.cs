@@ -19,30 +19,6 @@ namespace SpacePort
             ["Mega"] = 2
         };
 
-        
-        /*public bool CheckParkingAvalibility(string shipType)
-        {
-            int value = ShipTypes[shipType];
-            return value > 0;
-        }*/
-
-        /*public bool CheckMaxLots(string shipType)
-        {
-            int value = ShipTypes[shipType];
-            int maxValue = parkingCapacity[shipType];
-            return value <= maxValue;
-        }*/
-
-        /*public void Park(string shipType)
-        {
-            ShipTypes[shipType] -= 1;
-        }
-
-        public void Leave(string shipType)
-        {
-            ShipTypes[shipType] += 1;
-        }*/
-
         public double CalculateStayDuration(DateTime arrivalTime, DateTime departureTime)
         {
             TimeSpan timeSpan = departureTime - arrivalTime;

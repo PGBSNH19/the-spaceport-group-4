@@ -124,8 +124,9 @@ namespace SpacePort
                     spacePort.DisplayReceipt(name);
 
                     Console.WriteLine("\n\rPlease press any key to return to main menu");
-                    Console.Clear();
                     Console.ReadKey();
+                    Console.Clear();
+                    
                     
                     MenuChoice = 0;
                 }
