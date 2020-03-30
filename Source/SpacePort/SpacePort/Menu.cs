@@ -32,7 +32,17 @@ namespace SpacePort
                 {
                     DisplayMain();
                     Console.Write("\n\rPlease Make a choice: ");
-                    MenuChoice = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        MenuChoice = int.Parse(Console.ReadLine());
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Incorrect input. Please enter a number");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    
                 }
 
                 if (MenuChoice == 1)
@@ -142,6 +152,12 @@ namespace SpacePort
                     MenuChoice = 0;
                     Console.WriteLine("Please press Enter to start the program");
                 }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please enter a valid menu choice number");
+                    MenuChoice = 0;                    
+                }
             }
         }
 
@@ -200,7 +216,10 @@ namespace SpacePort
         public static void ParkShip(Dictionary<string,double> ships, List<string> keys)
         {
             Console.Write("\n\rPlese select ship to Check In: ");
+
             int ship = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please enter a number");
 
             for (int i = 0; i <= ships.Count; i++)
             {
