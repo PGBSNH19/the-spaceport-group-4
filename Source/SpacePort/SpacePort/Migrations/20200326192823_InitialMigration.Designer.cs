@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpacePort.Models;
 
 namespace SpacePort.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200326192823_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,10 +23,13 @@ namespace SpacePort.Migrations
 
             modelBuilder.Entity("SpacePort.Models.Receipt", b =>
                 {
-                    b.Property<int>("ReceiptID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
                     b.Property<int>("TicketID")
                         .HasColumnType("int");
@@ -32,7 +37,7 @@ namespace SpacePort.Migrations
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("ReceiptID");
+                    b.HasKey("ID");
 
                     b.HasIndex("TicketID")
                         .IsUnique();
@@ -42,7 +47,7 @@ namespace SpacePort.Migrations
 
             modelBuilder.Entity("SpacePort.Models.Ticket", b =>
                 {
-                    b.Property<int>("TicketID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -63,7 +68,7 @@ namespace SpacePort.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
-                    b.HasKey("TicketID");
+                    b.HasKey("ID");
 
                     b.ToTable("Ticket");
                 });

@@ -16,8 +16,6 @@ namespace XUnitTest.Test
             //Arrange
             Spaceport spaceport = new Spaceport();
 
-            Dictionary<string, int> shipTypes = spaceport.ShipTypes;
-
             //Act
             //Assert
             Assert.NotNull(spaceport);
@@ -26,25 +24,9 @@ namespace XUnitTest.Test
         [Fact]
         public void CreateMenu()
         {
-            //Arrange
-           // Menu m;
+            Menu.Display();
 
-            string SignIn = Menu.SignIn;
-            Menu.DisplayMenu();
-            Menu.DisplayShipTypes();
-            Menu.CustomerSignIn();
-
-        }
-
-        [Fact]
-        public void CreateValidate()
-        {
-            //Arrage
-            ValidateCustomer v = new ValidateCustomer();
-            string name = v.Name;
-            //Act
-            //Assert
-            Assert.NotNull(v);
+            Menu.TravelerSignIn();
         }
 
         [Fact]
@@ -53,10 +35,9 @@ namespace XUnitTest.Test
             //Arrange
             Ticket ticket = new Ticket();
 
-            int ticketID = ticket.ID;
-            decimal shipSize = ticket.ShipSize;
-            DateTime timeOfArrival = ticket.TimeOfArrival;
-            DateTime timeOfDepature = ticket.TimeOfDepature;
+            int ticketID = ticket.TicketID;
+            DateTime timeOfArrival = ticket.DateTimeOfArrival;
+            DateTime timeOfDepature = ticket.DateTimeOfDepature;
             //Act
             //Assert
             Assert.NotNull(ticket);
@@ -68,29 +49,13 @@ namespace XUnitTest.Test
             //Arrange
             Receipt receipt = new Receipt();
 
-            int receiptID = receipt.ID;
-            int ticketID = receipt.ID;
+            int receiptID = receipt.ReceiptID;
+            int ticketID = receipt.TicketID;
             int totalPrice = receipt.TotalPrice;
 
             //Act
             //Assert
             Assert.NotNull(receipt);
         }
-
-        [Fact]
-        public void CreatePeopleAPIResponse()
-        {
-            //Arrange
-            Traveler people = new Traveler();
-
-            string name = people.Name;
-
-            //Act
-            //Assert
-            Assert.NotNull(people);
-
-
-        }
-
     }
 }

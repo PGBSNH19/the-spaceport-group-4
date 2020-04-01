@@ -10,8 +10,8 @@ using SpacePort.Models;
 namespace SpacePort.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200324212837_createIntial")]
-    partial class createIntial
+    [Migration("20200327143602_UpdatePropertiesName")]
+    partial class UpdatePropertiesName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,13 +23,10 @@ namespace SpacePort.Migrations
 
             modelBuilder.Entity("SpacePort.Models.Receipt", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ReceiptID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
 
                     b.Property<int>("TicketID")
                         .HasColumnType("int");
@@ -37,7 +34,7 @@ namespace SpacePort.Migrations
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("ReceiptID");
 
                     b.HasIndex("TicketID")
                         .IsUnique();
@@ -47,28 +44,28 @@ namespace SpacePort.Migrations
 
             modelBuilder.Entity("SpacePort.Models.Ticket", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("TicketID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Person")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
-
-                    b.Property<decimal>("ShipSize")
-                        .HasColumnType("decimal(10, 4)");
-
-                    b.Property<string>("ShipType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TimeOfArrival")
+                    b.Property<DateTime>("DateTimeOfArrival")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("TimeOfDepature")
+                    b.Property<DateTime>("DateTimeOfDepature")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.Property<string>("PersonName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
+
+                    b.Property<string>("ShipName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
+
+                    b.HasKey("TicketID");
 
                     b.ToTable("Ticket");
                 });

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Xunit;
 using Newtonsoft.Json;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace XUnitTest.Test
 {
@@ -44,35 +45,47 @@ namespace XUnitTest.Test
             Assert.Equal("https://swapi.co/api/", api.Path);
         }
 
-        [Theory]
-        [InlineData("Micael Skywalker")]
-        [InlineData("Skywalkeer")]
-        [InlineData("Micael")]
-        [InlineData("CCCCPrttrP")]
-        public void TestFalseAsyncSearchTraveler(string name)
+        [Fact]
+        public void FetchTravelerShipURI_FromRecievedJObject_FetchCorrectShipURI()
         {
-           // name = name.ToLower();
-            StarWarsApi api = new StarWarsApi();
-            bool isTraveler = api.GetAsyncTraveler(name.ToLower()).Result;
+            List<string> expectedURIs = new List<string>()
+            { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };
 
-            Assert.False(isTraveler);
+            JObject testObject = JObject.Parse(@"{
+            'count': 1, 
+            'next': null, 
+            'previous': null, 
+            'results': [
+                {
+                    'name': 'Luke Skywalker',                 
+                    'starships': [
+                        'https://swapi.co/api/starships/12/',
+                        'https://swapi.co/api/starships/22/'
+                        ]
+                    }
+                ]
+            }");
+
+            StarWarsApi api = new StarWarsApi();
+            List<string> actualURIs = api.FetchTravelerShipURI(testObject);
+
+            Assert.Equal(expectedURIs, actualURIs);
         }
 
-        [Theory]
-        [InlineData("Luke SKYWALKER")]
-        [InlineData("anakin skYwalker")]
-        [InlineData("bB8")]
-        [InlineData("Beru Whitesun Lars")]        
-        public void TestTrueAsyncSearchTraveler(string name)
+        [Fact]
+        public void FetchTravelerShipURI_FromRecievedJObjectToNoresult_FetchCorrectShipURI2()
         {
-            //name = name.ToLower();
+            List<string> expectedURIs = new List<string>() { "https://swapi.co/api/starships/12/", "https://swapi.co/api/starships/22/" };
+            JObject testObject = JObject.Parse(@"{
+            'count': 1, 
+            'next': null, 
+            'previous': null, 
+            'results': null}");
+
             StarWarsApi api = new StarWarsApi();
-            bool isTraveler = api.GetAsyncTraveler(name.ToLower()).Result;
+            List<string> actualURIs = api.FetchTravelerShipURI(testObject);
 
-            Assert.True(isTraveler);
+            Assert.Equal(expectedURIs, actualURIs);
         }
-
-
-
     }
-}
+}   
